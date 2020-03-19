@@ -20,7 +20,6 @@
   },
   "homepage": "https://github.com/Lambda-School-Labs/sorting-hat-be#readme",
   "devDependencies": {
-    "knex-cleaner": "^1.3.0",
     "cross-env": "^7.0.0",
     "jest": "^25.1.0",
     "nodemon": "^2.0.2",
@@ -38,6 +37,7 @@
     "helmet": "^3.21.3",
     "jsonwebtoken": "^8.5.1",
     "knex": "^0.20.10",
+    "knex-cleaner": "^1.3.0",
     "pg": "^7.18.2"
   }
 }
