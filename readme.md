@@ -11,5 +11,5 @@ For BACKEND devs
 Sorting Hat is a quick quiz application that suggests students the top ranking tracks that they can further look into based on their interests and what they find most important in a job.
 
 ## Overview
-This API allows for the front end application to interact with the back end database to display questions and results of the quiz as they wish.
+This API allows for the front end application to interact with the back end database to display questions and results of the quiz as desired.
 
