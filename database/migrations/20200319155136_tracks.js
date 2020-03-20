@@ -21,8 +21,42 @@ exports.up = function(knex) {
       // Foreign Keys
         tbl.integer('answer_id')
           .unsigned()
-          .notNullable()
           .references('id')
+          .inTable('answers')
+          .onUpdate('CASCADE')
+          .onDelete('RESTRICT');
+
+        tbl.integer('a_id')
+          .unsigned()
+          .references('a_choice_id')
+          .inTable('answers')
+          .onUpdate('CASCADE')
+          .onDelete('RESTRICT');
+
+        tbl.integer('b_id')
+          .unsigned()
+          .references('b_choice_id')
+          .inTable('answers')
+          .onUpdate('CASCADE')
+          .onDelete('RESTRICT');
+
+        tbl.integer('c_id')
+          .unsigned()
+          .references('c_choice_id')
+          .inTable('answers')
+          .onUpdate('CASCADE')
+          .onDelete('RESTRICT');
+
+        tbl.integer('d_id')
+          .unsigned()
+          .references('d_choice_id')
+          .inTable('answers')
+          .onUpdate('CASCADE')
+          .onDelete('RESTRICT');
+
+        tbl.integer('e_id')
+          .unsigned()
+          .references('e_choice_id')
           .inTable('answers')
           .onUpdate('CASCADE')
           .onDelete('RESTRICT');
