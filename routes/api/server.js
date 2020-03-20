@@ -5,6 +5,7 @@ const helmet = require('helmet');
 const cors = require('cors');
 
 const questionsRouter = require('../questions/router.js');
+const answersRouter = require('../answers/router.js');
 
 const server = express();
 
@@ -15,6 +16,7 @@ server.use(helmet());
 
 // routes
 server.use('/api/questions', questionsRouter);
+server.use('/api/answers', answersRouter);
 
 server.get('/', (req, res) => {
     res.json({ api: 'up' });
