@@ -3,21 +3,21 @@ exports.up = function(knex) {
     return knex.schema.createTable('answers', tbl => {
         tbl.increments();
           
-        tbl.string('a-choice', 500)
+        tbl.string('a_choice', 500)
             .notNullable()
             .unique();
   
-        tbl.string('b-choice', 500)
+        tbl.string('b_choice', 500)
             .notNullable()
             .unique();
   
-        tbl.string('c-choice', 500)
+        tbl.string('c_choice', 500)
             .unique();
   
-        tbl.string('d-choice', 500)
+        tbl.string('d_choice', 500)
             .unique();
   
-        tbl.string('e-choice', 500)
+        tbl.string('e_choice', 500)
             .unique();
 
       // Foreign Keys

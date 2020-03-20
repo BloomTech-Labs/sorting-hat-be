@@ -9,7 +9,7 @@ exports.seed = function(knex) {
         { question: 'Lorem ipsum dolor sit amet, wisi eget dolor montes nulla odio, nonummy est parturient quis parturient amet?' },
         { question: 'Consectetuer penatibus sit sit risus pharetra et?' },
         { question: 'At porta eros turpis mauris varius iaculis, eros eu nibh lorem et?' },
-        { question: 'varius risus sollicitudin aliquet ut nibh quis sollicitudin ut nulla?' }
+        { question: 'What\'s the meaning to life?' }
       ];
 
       return knex('questions').insert(questions);
