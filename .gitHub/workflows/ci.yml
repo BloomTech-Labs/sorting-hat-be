@@ -33,8 +33,8 @@ jobs:
       - uses: paambaati/codeclimate-action@v2.4.0
         env:
 
-    # An environment variable, the value is a GitHub repo secret
-    CC_TEST_REPORTER_ID: ${{ secrets.CodeClimateReporterId }}
-  with:
-    # Run our `coverage` command from our `package.json`
-    coverageCommand: yarn run coverage
+          # An environment variable, the value is a GitHub repo secret
+          CC_TEST_REPORTER_ID: ${{ secrets.CodeClimateReporterId }}
+        with:
+          # Run our `coverage` command from our `package.json`
+          coverageCommand: yarn run coverage
