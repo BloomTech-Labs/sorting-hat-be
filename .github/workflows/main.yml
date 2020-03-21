@@ -1,33 +1,40 @@
-# This is a basic workflow to help you get started with Actions
+# The name of the workflow
+name: build
 
-name: CI
+# What conditions trigger the workflow
+#  In this case, all pushes and pull requests
+on: [push, pull_request]
 
-# Controls when the action will run. Triggers the workflow on push or pull request 
-# events but only for the master branch
-on:
-  push:
-    branches: [ master ]
-  pull_request:
-    branches: [ master ]
-
-# A workflow run is made up of one or more jobs that can run sequentially or in parallel
+# The jobs that will be run, usually in parallel
 jobs:
-  # This workflow contains a single job called "build"
-  build:
-    # The type of runner that the job will run on
+  # A job to generate and publish code coverage
+  coverage:
+    # A more descriptive name of the job
+    name: Test and publish test coverage
+
+    # The OS on which the job will run
     runs-on: ubuntu-latest
 
-    # Steps represent a sequence of tasks that will be executed as part of the job
+    # The steps for the job, executed in sequence
     steps:
-    # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
-    - uses: actions/checkout@v2
+      
+      # A GitHub action for checking out the current branch
+      - uses: actions/checkout@master
 
-    # Runs a single command using the runners shell
-    - name: Run a one-line script
-      run: echo Hello, world!
+      # A GitHub action to setup Node.js
+      - uses: actions/setup-node@master
+        with:
+          node-version: "12"
 
-    # Runs a set of commands using the runners shell
-    - name: Run a multi-line script
-      run: |
-        echo Add other actions to build,
-        echo test, and deploy your project.
+      # Run the NPM install command before proceeding
+      - run: yarn install
+
+      # A GitHub action for running tests and publishing coverage
+      - uses: paambaati/codeclimate-action@v2.4.0
+        env:
+
+    # An environment variable, the value is a GitHub repo secret
+    CC_TEST_REPORTER_ID: ${{ secrets.CodeClimateReporterId }}
+  with:
+    # Run our `coverage` command from our `package.json`
+    coverageCommand: yarn run coverage
