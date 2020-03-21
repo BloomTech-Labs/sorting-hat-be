@@ -1,4 +1,4 @@
-const db = require('../../database/connection');
+require('dotenv').config({ path: '../../config/.env'});
 
 describe('questions router', () => {
     describe('test environment', function () {
