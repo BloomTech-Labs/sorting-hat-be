@@ -7,7 +7,7 @@
     "test": "cross-env NODE_ENV=staging jest --watch",
     "server": "nodemon index.js",
     "start": "node index.js",
-    "coverage": "jest --coverage --debug --detectOpenHandles --forceExit || true"
+    "coverage": "cross-env NODE_ENV=staging jest --coverage --detectOpenHandles --forceExit || true"
   },
   "repository": {
     "type": "git",
