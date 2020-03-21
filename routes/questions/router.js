@@ -19,6 +19,8 @@ router.get('/:id', (req, res) => {
 
     Questions.findById(id)
     .then(question => {
+        console.log('question', question);
+        
         res.json(question);
     })
     .catch(({ name, message, stack, code }) => {
