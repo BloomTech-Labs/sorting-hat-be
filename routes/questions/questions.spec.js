@@ -1,4 +1,3 @@
-const db = require('../../database/connection.js');
 require('dotenv').config({ path: '../../config/.env'});
 const request = require('supertest');
 const server = require('../api/server.js');
