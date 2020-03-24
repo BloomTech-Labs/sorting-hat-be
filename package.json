@@ -1,7 +1,7 @@
 {
   "name": "sorting-hat-be",
   "version": "1.0.0",
-  "description": "RESTful NodeJS Backend for Sorting Hat",
+  "description": "RESTful NodeJS Backend for Tech Sorting Hat",
   "main": "index.js",
   "scripts": {
     "test": "cross-env NODE_ENV=staging jest --watch",
