@@ -9,7 +9,7 @@ exports.up = function(knex) {
         tbl.decimal('iOS', 3, 2)
             .defaultTo(0);
   
-        tbl.decimal('andriod', 3, 2)
+        tbl.decimal('android', 3, 2)
             .defaultTo(0);
   
         tbl.decimal('UX', 3, 2)
