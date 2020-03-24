@@ -25,14 +25,13 @@ This framework was chosen for the following reasons:
 
 ## Endpoints
 
-🚫This is a placeholder, replace the endpoints, access controll, and descriptioin to match your project
-
 #### Questions Routes
 
 | Method | Endpoint                | Access Control | Description                                  |
 | ------ | ----------------------- | -------------- | -------------------------------------------- |
 | GET    | `/api/questions` | all questions      | Returns all the questions for the quiz. |
 | GET    | `/api/questions/:id` | specific question         | Retrieve an existing question.             |
+| POST    | `/api/questions` | specific question         | Retrieve an existing question.             |
 | PUT    | `/api/questions/:id` | specific question         | Modify an existing question.             |
 | DELETE | `/api/questions` | specific question         | Delete a question.                      |
 
