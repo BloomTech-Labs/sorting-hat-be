@@ -6,7 +6,7 @@ module.exports = {
 }
 
 function find() {
-    return db('tracks').select('fullstack', 'iOS', 'andriod', 'UX', 'DS', 'id', 'answer_id');
+    return db('tracks').select('fullstack', 'iOS', 'android', 'UX', 'DS', 'id', 'answer_id');
 }
 
 function findById(id) {
