@@ -15,10 +15,10 @@ To get the server running locally:
 
 ### NodeJS
 
-The framework was chosen for the following reasons:
+This framework was chosen for the following reasons:
 
--    built on Chrome's JavaScript runtime JavaScript which is convenient as Javascript is the only choice to develop new web applications in the web browser.
--    adding/changing functionality is easy as changes to the source code isn't needed.
+-    built on Chrome's JavaScript runtime which is convenient as Javascript is the only choice to develop new web applications in the web browser.
+-    adding/changing functionality is easy as changes to the source code aren't needed.
 -    lightweight as its executions are a series of asynchronous callback.
 -    good to learn to understand and build on existing applications that use NodeJS
 
