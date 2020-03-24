@@ -35,13 +35,60 @@ This framework was chosen for the following reasons:
 | PUT    | `/api/questions/:id` | specific question         | Modify an existing question.             |
 | DELETE | `/api/questions` | specific question         | Delete a question.                      |
 
+> GET to https://tech-sorting-hat.herokuapp.com`/api/questions` returns :
+```
+[
+    {
+        "question": "Ultrices neque ullamcorper, arcu luctus, sapien congue amet elit nibh?",
+        "id": 1
+    },
+    {
+        "question": "Lorem ipsum dolor sit amet, wisi eget dolor montes nulla odio, nonummy est parturient quis parturient amet?",
+        "id": 2
+    }
+]
+```
+
+> GET to https://tech-sorting-hat.herokuapp.com`/api/questions/:id` returns :
+```
+{
+    "id": 1,
+    "question": "Ultrices neque ullamcorper, arcu luctus, sapien congue amet elit nibh?"
+}
+```
+
 #### Answers Routes
 
 | Method | Endpoint                | Access Control      | Description                                        |
 | ------ | ----------------------- | ------------------- | -------------------------------------------------- |
 | GET    | `/api/answers`        | all answers           | Returns answers for all the questions of the quiz.               |
 | GET    | `/api/answers/:id`    | specific answer | Returns a specific answer by its ID.             |
-| GET    | `/api/answers/:questionId`        | asnwers that share questionId | Returns answers for a single question.                    |
-| POST   | `/api/answers/:questionId` | none                | Creates a new user as owner of a new organization. |
-| PUT    | `/api/:userId`        | owners, supervisors |                                                    |
-| DELETE | `/api/:userId`        | owners, supervisors |                                                    |
+| GET    | `/api/answers/:questionId`        | answers that share questionId | Returns answers for a single question.                    |
+| POST   | `/api/answers/:questionId` | specific answer to question     | Creates a new answer choice for a question |
+| PUT    | `/api/answers/:id` | specific answer | Update a specific answer |
+| DELETE | `/api/answers/:id` | specific answer | Delete a specific answer |
+
+> GET to https://tech-sorting-hat.herokuapp.com`/api/answers` returns :
+```
+[
+    {
+        "choice": "Nulla et pellentesque, facilisis pede",
+        "id": 1,
+        "question_id": 1
+    },
+    {
+        "choice": "This is an answer to the question",
+        "id": 2,
+        "question_id": 1
+    }
+]
+```
+
+> GET to https://tech-sorting-hat.herokuapp.com`/api/answers/:id` returns :
+```
+{
+    "choice": "Nulla et pellentesque, facilisis pede",
+    "id": 1,
+    "question_id": 1
+}
+```
