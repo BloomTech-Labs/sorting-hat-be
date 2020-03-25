@@ -18,9 +18,35 @@ describe('questions router', () => {
     })
 
     describe('GET /api/questions/:id', function () {
-        it('should return all the questions', function () {
+        it('Retrieve an existing question.', function () {
             return request(server)
-            .get('/api/questions/1')
+            .get('/api/questions')
+            .expect(200);
+        });
+    })
+
+    describe('POST /api/questions', function () {
+        it('Create a question.', function () {
+            return request(server)
+            .post('/api/questions')
+            .send({ question: `${Date.now()}` })
+            .expect(201);
+        });
+    })
+
+    describe('PUT /api/questions/:id', function () {
+        it('Modify an existing question.', function () {
+            return request(server)
+            .put('/api/questions/1')
+            .send({ question: `${Date.now()}` })
+            .expect(200);
+        });
+    })
+
+    describe('DELETE /api/questions/:id', function () {
+        it('Delete an existing question.', function () {
+            return request(server)
+            .delete('/api/questions/6')
             .expect(200);
         });
     })
