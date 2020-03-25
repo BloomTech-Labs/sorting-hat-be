@@ -33,7 +33,7 @@ This framework was chosen for the following reasons:
 | GET    | `/api/questions/:id` | all users| Retrieve an existing question.             |
 | POST    | `/api/questions` | admin | Create a question.             |
 | PUT    | `/api/questions/:id` | admin | Modify an existing question.             |
-| DELETE | `/api/questions` | admin | Delete an existing question.                      |
+| DELETE | `/api/questions/:id` | admin | Delete an existing question.                      |
 
 > GET `/api/questions` returns :
 ```
@@ -57,18 +57,17 @@ This framework was chosen for the following reasons:
 }
 ```
 
-> POST `/api/questions` | input should be in this format:
+> POST `/api/questions` | input sample:
 ```
 {
     "question": "Sample question goes here"
 }
 ```
 
-> PUT `/api/questions` | input should be in this format:
+> PUT `/api/questions/:id` | input sample:
 ```
 {
-    "question": "Updated sample question goes here",
-    "id": 10
+    "question": "Updated sample question goes here"
 }
 ```
 

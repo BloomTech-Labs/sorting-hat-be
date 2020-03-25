@@ -4,7 +4,8 @@ module.exports = {
     find,
     findById,
     addQuestion,
-    editQuestion
+    editQuestion,
+    delQuestion
 }
 
 function find() {
@@ -25,4 +26,10 @@ function editQuestion(changes, id) {
     return db('questions')
       .where({ id })
       .update(changes);
+}
+
+function delQuestion(id) {
+    return db('questions')
+        .where({ id })
+        .del();
 }
