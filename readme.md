@@ -2,8 +2,8 @@
 
 # API Documentation
 
-#### Backend delpoyed at [Heroku](https://tech-sorting-hat.herokuapp.com/) <br>
-#### staging environment delpoyed at [Heroku](https://staging-tech-sorting-hat.herokuapp.com/) <br>
+*Backend delpoyed at* [Heroku](https://tech-sorting-hat.herokuapp.com/): _https://tech-sorting-hat.herokuapp.com_ <br>
+*Staging environment delpoyed at* [Heroku](https://staging-tech-sorting-hat.herokuapp.com/): _https://staging-tech-sorting-hat.herokuapp.com_ <br>
 
 ## Getting started
 
@@ -29,11 +29,12 @@ This framework was chosen for the following reasons:
 
 | Method | Endpoint                | Access Control | Description                                  |
 | ------ | ----------------------- | -------------- | -------------------------------------------- |
-| GET    | `/api/questions` | all questions      | Returns all the questions for the quiz. |
-| GET    | `/api/questions/:id` | specific question         | Retrieve an existing question.             |
-| POST    | `/api/questions` | specific question         | Retrieve an existing question.             |
-| PUT    | `/api/questions/:id` | specific question         | Modify an existing question.             |
-| DELETE | `/api/questions` | specific question         | Delete a question.                      |
+| GET    | `/api/questions` | all users | Returns all the questions for the quiz. |
+| GET    | `/api/questions/:id` | all users| Retrieve an existing question.             |
+| GET    | `/api/questions/:id/answers/:questionId` | all users | Returns answers corresponding to a question.|
+| POST    | `/api/questions` | admin | Retrieve an existing question.             |
+| PUT    | `/api/questions/:id` | admin | Modify an existing question.             |
+| DELETE | `/api/questions` | admin | Delete a question.                      |
 
 > GET to https://tech-sorting-hat.herokuapp.com`/api/questions` returns :
 ```
@@ -61,14 +62,14 @@ This framework was chosen for the following reasons:
 
 | Method | Endpoint                | Access Control      | Description                                        |
 | ------ | ----------------------- | ------------------- | -------------------------------------------------- |
-| GET    | `/api/answers`        | all answers           | Returns answers for all the questions of the quiz.               |
-| GET    | `/api/answers/:id`    | specific answer | Returns a specific answer by its ID.             |
-| GET    | `/api/answers/:questionId`        | answers that share questionId | Returns answers for a single question.                    |
-| POST   | `/api/answers/:questionId` | specific answer to question     | Creates a new answer choice for a question |
-| PUT    | `/api/answers/:id` | specific answer | Update a specific answer |
-| DELETE | `/api/answers/:id` | specific answer | Delete a specific answer |
+| GET    | `/api/answers`        | all users | Returns answers for all the questions of the quiz.               |
+| GET    | `/api/answers/:id`    | all users| Returns a specific answer by its ID.             |
+| GET    | `/api/answers/questions/:questionId` | all users | Returns all answers associated with that question ID |
+| POST    | `/api/answers/questions/:questionId` | admin | Create an answer for a specific question |
+| PUT    | `/api/answers/:id` | admin | Update a specific answer |
+| DELETE | `/api/answers/:id` | admin | Delete a specific answer |
 
-> GET to https://tech-sorting-hat.herokuapp.com`/api/answers` returns :
+> GET to `/api/answers` returns :
 ```
 [
     {
@@ -84,11 +85,28 @@ This framework was chosen for the following reasons:
 ]
 ```
 
-> GET to https://tech-sorting-hat.herokuapp.com`/api/answers/:id` returns :
+> GET to https://tech-sorting-hat.herokuapp.com `/api/answers/:id` returns :
 ```
 {
-    "choice": "Nulla et pellentesque, facilisis pede",
     "id": 1,
+    "choice": "Nulla et pellentesque, facilisis pede",
     "question_id": 1
 }
+```
+
+
+> GET to https://tech-sorting-hat.herokuapp.com `/api/answers/questions/:questionId` returns :
+```
+[
+    {
+        "id": 1,
+        "choice": "Nulla et pellentesque, facilisis pede",
+        "question_id": 1
+    },
+    {
+        "id": 2,
+        "choice": "This is an answer to the question",
+        "question_id": 1
+    }
+]
 ```
