@@ -37,7 +37,7 @@ router.get('/:id/answers', validateId, (req, res) => {
     })
 });
 
-router.post('/', (req, res) => {
+router.post('/', validateInput, (req, res) => {
     const question = req.body;
     
     Questions.addQuestion(question)
@@ -97,11 +97,9 @@ function validateId(req, res, next) {
 function validateInput(req, res, next) {
     if( Object.keys(req.body).length == 0 ) {
       res.status(400).json({ message: "missing required fields" });
-    } else if(!req.body.title) {
-      res.status(400).json({ message: "missing required title field" });
-    } else if(!req.body.body) {
-      res.status(400).json({ message: "missing required body field" });
+    } else if(!req.body.question) {
+      res.status(400).json({ message: "missing required question field" });
     } else next();
-  }
+}
 
 module.exports = router;

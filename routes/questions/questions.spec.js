@@ -15,15 +15,25 @@ describe('questions router', () => {
             .get('/api/questions')
             .expect(200);
         });
-
     })
 
     describe('GET /api/questions/:id', function () {
         it('Retrieve an existing question.', function () {
             return request(server)
-            .get('/api/questions')
+            .get('/api/questions/1')
             .expect(200);
         });
+
+        it('Check if the question exists.', function () {
+            return request(server)
+            .get('/api/questions/1000')
+            .expect(500)
+            .then(res => {
+                expect(res.body).toEqual({ error: 'Couldn\'t retrieve a question with id of 1000' })
+            })
+        });
+
+        
     })
 
     describe('POST /api/questions', function () {
@@ -47,9 +57,14 @@ describe('questions router', () => {
     describe('DELETE /api/questions/:id', function () {
         it('Delete an existing question.', function () {
             return request(server)
-            .delete('/api/questions/6')
-            .expect(200);
-        });
+            .post('/api/questions')
+            .send({ question: `${Date.now()}` })
+            .then(() => {
+                request(server)
+                .delete('/api/questions/1')
+                .expect(200);
+            });
+        })
     })
 });
 
