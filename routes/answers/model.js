@@ -25,7 +25,9 @@ function findByQuestion(question_id) {
 }
 
 function addChoice(choice) {
-    return db('answers').insert(choice, 'id');
+    return db('answers')
+    .join('questions', 'questions.id', 'answers.question_id')
+    .insert(choice, 'id');
 }
 
 function editAnswer(changes, id) {

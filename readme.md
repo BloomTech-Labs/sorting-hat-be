@@ -57,14 +57,14 @@ This framework was chosen for the following reasons:
 }
 ```
 
-> POST `/api/questions` | input sample:
+> POST `/api/questions` input sample:
 ```
 {
     "question": "Sample question goes here"
 }
 ```
 
-> PUT `/api/questions/:id` | input sample:
+> PUT `/api/questions/:id` input sample:
 ```
 {
     "question": "Updated sample question goes here"
@@ -77,10 +77,10 @@ This framework was chosen for the following reasons:
 | ------ | ----------------------- | ------------------- | -------------------------------------------------- |
 | GET    | `/api/answers`        | all users | Returns answers for all the questions of the quiz.               |
 | GET    | `/api/answers/:id`    | all users| Returns a specific answer by its ID.             |
-| GET    | `/api/answers/questions/:questionId` | all users | Returns all answers associated with that question ID |
-| POST    | `/api/answers/questions/:questionId` | admin | Create an answer for a specific question |
-| PUT    | `/api/answers/:id` | admin | Update a specific answer |
-| DELETE | `/api/answers/:id` | admin | Delete a specific answer |
+| GET    | `/api/answers/questions/:questionId` | all users | Returns all answers associated with that question. |
+| POST    | `/api/answers/questions/:questionId` | admin | Create an answer for a specific question. |
+| PUT    | `/api/answers/:id` | admin | Update a specific answer. |
+| DELETE | `/api/answers/:id` | admin | Delete a specific answer. |
 
 > GET `/api/answers` returns :
 ```
@@ -123,16 +123,26 @@ This framework was chosen for the following reasons:
 ]
 ```
 
-> POST `/api/answers/questions/:questionId` | input sample:
+> POST `/api/answers/questions/:questionId` input sample:
 ```
 {
     "choice": "Write a possible answer to a question here"
 }
 ```
 
-> PUT `/api/answers/:id` | input sample:
+> PUT `/api/answers/:id` input sample:
 ```
 {
     "choice": "Update an existing answer here"
 }
 ```
+
+### Tracks Routes
+
+| Method | Endpoint                | Access Control | Description                                  |
+| ------ | ----------------------- | -------------- | -------------------------------------------- |
+| GET    | `/api/tracks` | all users      | Returns all the tracks and the corresponding points per answer choice. |
+| GET    | `/api/tracks/:id` | all users | Returns all the points associated with each track per answer choice. |
+| POST    | `/api/tracks` | admin         | Create a new track.             |
+| PUT    | `/api/tracks` | admin         | Modify an existing track.        |
+| DELETE | `/api/tracks` | admin         | Delete an existing track.        |
