@@ -4,7 +4,8 @@ module.exports = {
     find,
     findById,
     findByQuestion,
-    addChoice
+    addChoice,
+    editAnswer
 }
 
 function find() {
@@ -24,4 +25,10 @@ function findByQuestion(question_id) {
 
 function addChoice(choice) {
     return db('answers').insert(choice, 'id');
+}
+
+function editAnswer(changes, id) {
+    return db('answers')
+      .where({ id })
+      .update(changes);
 }

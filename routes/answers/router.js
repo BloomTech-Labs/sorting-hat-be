@@ -63,4 +63,19 @@ router.post('/questions/:questionId', (req, res) => {
     })
 });
 
+router.put('/:id',(req, res) => {
+    const id = req.params.id;
+    const changes = req.body;    
+    
+    Answers.editAnswer(changes, id)
+    .then(edited => {
+        res.json(edited);
+    })
+    .catch(({ name, message, stack, code }) => {
+        console.log({ name, message, stack, code });
+
+        res.status(500).json({ name, message, stack, code });
+    })
+});
+
 module.exports = router;

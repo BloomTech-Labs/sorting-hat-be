@@ -130,9 +130,9 @@ This framework was chosen for the following reasons:
 }
 ```
 
-> PUT `/api/answers/questions/:questionId` | input sample:
+> PUT `/api/answers/:id` | input sample:
 ```
 {
-    "choice": "Update an existing answer to a question here"
+    "choice": "Update an existing answer here"
 }
 ```
