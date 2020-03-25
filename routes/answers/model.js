@@ -3,7 +3,8 @@ const db = require('../../database/connection.js');
 module.exports = {
     find,
     findById,
-    findByQuestion
+    findByQuestion,
+    addChoice
 }
 
 function find() {
@@ -19,4 +20,8 @@ function findById(id) {
 function findByQuestion(question_id) {
     return db('answers')
         .where({ question_id });
+}
+
+function addChoice(choice) {
+    return db('answers').insert(choice, 'id');
 }

@@ -107,7 +107,6 @@ This framework was chosen for the following reasons:
 }
 ```
 
-
 > GET `/api/answers/questions/:questionId` returns :
 ```
 [
@@ -122,4 +121,18 @@ This framework was chosen for the following reasons:
         "question_id": 1
     }
 ]
+```
+
+> POST `/api/answers/questions/:questionId` | input sample:
+```
+{
+    "choice": "Write a possible answer to a question here"
+}
+```
+
+> PUT `/api/answers/questions/:questionId` | input sample:
+```
+{
+    "choice": "Update an existing answer to a question here"
+}
 ```
