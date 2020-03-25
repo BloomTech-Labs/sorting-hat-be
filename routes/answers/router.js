@@ -4,30 +4,24 @@ const router = require('express').Router();
 router.get('/', (req, res) => {
     Answers.find()
         .then(answers => {
-            console.log('answers', answers);
             res.json(answers);
         })
-        .catch(({ name, message, stack, code }) => {
-            console.log({ name, message, stack, code });
+        .catch(() => {
 
-            res.status(500).json({ name, message, stack, code });
+            res.status(500).json({ error: 'Unable to retrieve answers' });
         })
 });
 
 router.get('/:id', (req, res) => {
     const { id } = req.params;
-    console.log('id', id);
     
     Answers.findById(id)
     .then(answer => {
-        console.log('answer', answer);
-        
         res.json(answer);
     })
-    .catch(({ name, message, stack, code }) => {
-        console.log({ name, message, stack, code });
+    .catch(() => {
         
-        res.status(500).json({ name, message, stack, code });
+        res.status(500).json({ error: 'Unable to retrieve answer' });
     })
 });
 
@@ -36,14 +30,11 @@ router.get('/questions/:questionId', (req, res) => {
     
     Answers.findByQuestion(questionId)
     .then(answer => {
-        console.log('answer', answer);
-        
         res.json(answer);
     })
-    .catch(({ name, message, stack, code }) => {
-        console.log({ name, message, stack, code });
+    .catch(() => {
 
-        res.status(500).json({ name, message, stack, code });
+        res.status(500).json({ error: 'Unable to retrieve question' });
     })
 });
 
@@ -56,10 +47,9 @@ router.post('/questions/:questionId', (req, res) => {
     .then(inserted => {
         res.status(201).json(inserted);
     })
-    .catch(({ name, message, stack, code }) => {
-        console.log({ name, message, stack, code });
+    .catch(() => {
 
-        res.status(500).json({ name, message, stack, code });
+        res.status(500).json({ error: 'Unable to create question' });
     })
 });
 
@@ -71,10 +61,9 @@ router.put('/:id',(req, res) => {
     .then(edited => {
         res.json(edited);
     })
-    .catch(({ name, message, stack, code }) => {
-        console.log({ name, message, stack, code });
+    .catch(() => {
 
-        res.status(500).json({ name, message, stack, code });
+        res.status(500).json({ error: 'Unable to edit answer' });
     })
 });
 
@@ -85,10 +74,9 @@ router.delete('/:id',(req, res) => {
     .then(count => {
         res.json(count);
     })
-    .catch(({ name, message, stack, code }) => {
-        console.log({ name, message, stack, code });
+    .catch(() => {
 
-        res.status(500).json({ name, message, stack, code });
+        res.status(500).json({ error: 'Unable to delete answer' });
     })
 });
 

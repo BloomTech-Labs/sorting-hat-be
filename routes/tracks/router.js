@@ -4,13 +4,12 @@ const router = require('express').Router();
 router.get('/', (req, res) => {
     Tracks.find()
         .then(tracks => {
-            console.log('tracks', tracks);
             res.json(tracks);
         })
-        .catch(({ name, message, stack, code }) => {
-            console.log({ name, message, stack, code });
+        .catch(() => {
 
-            res.status(500).json({ name, message, stack, code });
+
+            res.status(500).json({ error: 'Unable to retrieve tracks' });
         })
 });
 
@@ -19,14 +18,11 @@ router.get('/:id', (req, res) => {
 
     Tracks.findById(id)
     .then(track => {
-        console.log('track', track);
-        
         res.json(track);
     })
-    .catch(({ name, message, stack, code }) => {
-        console.log({ name, message, stack, code });
+    .catch(() => {
 
-        res.status(500).json({ name, message, stack, code });
+        res.status(500).json({ error: 'Unable to retrieve track' });
     })
 });
 
@@ -39,10 +35,9 @@ router.post('/:answerId', (req, res) => {
     .then(created => {
         res.status(201).json(created);
     })
-    .catch(({ name, message, stack, code }) => {
-        console.log({ name, message, stack, code });
+    .catch(() => {
 
-        res.status(500).json({ name, message, stack, code });
+        res.status(500).json({ error: 'Unable to create track' });
     })
 });
 
@@ -53,10 +48,9 @@ router.delete('/:id', (req, res) => {
     .then(deleted => {
         res.json(deleted);
     })
-    .catch(({ name, message, stack, code }) => {
-        console.log({ name, message, stack, code });
+    .catch(() => {
 
-        res.status(500).json({ name, message, stack, code });
+        res.status(500).json({ error: 'Unable to delete track' });
     })
 })
 
@@ -68,10 +62,10 @@ router.put('/:id', (req, res) => {
         .then(edited => {
             res.json(edited);
         })
-        .catch(({ name, message, stack, code }) => {
-            console.log({ name, message, stack, code });
+        .catch(() => {
 
-            res.status(500).json({ name, message, stack, code });
+
+            res.status(500).json({ error: 'Unable to edit track' });
         })
 })
 
