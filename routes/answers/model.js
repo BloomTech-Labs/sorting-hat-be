@@ -5,7 +5,8 @@ module.exports = {
     findById,
     findByQuestion,
     addChoice,
-    editAnswer
+    editAnswer,
+    delAnswer
 }
 
 function find() {
@@ -31,4 +32,10 @@ function editAnswer(changes, id) {
     return db('answers')
       .where({ id })
       .update(changes);
+}
+
+function delAnswer(id) {
+    return db('answers')
+        .where({ id })
+        .del();
 }

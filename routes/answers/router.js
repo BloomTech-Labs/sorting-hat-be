@@ -78,4 +78,18 @@ router.put('/:id',(req, res) => {
     })
 });
 
+router.delete('/:id',(req, res) => {
+    const id = req.params.id;
+    
+    Answers.delAnswer(id)
+    .then(count => {
+        res.json(count);
+    })
+    .catch(({ name, message, stack, code }) => {
+        console.log({ name, message, stack, code });
+
+        res.status(500).json({ name, message, stack, code });
+    })
+});
+
 module.exports = router;
