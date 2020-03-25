@@ -2,8 +2,8 @@
 
 # API Documentation
 
-*Backend delpoyed at* [Heroku](https://tech-sorting-hat.herokuapp.com/): _https://tech-sorting-hat.herokuapp.com_ <br>
-*Staging environment delpoyed at* [Heroku](https://staging-tech-sorting-hat.herokuapp.com/): _https://staging-tech-sorting-hat.herokuapp.com_ <br>
+**Backend delpoyed at [Heroku](https://tech-sorting-hat.herokuapp.com/)**:  _https://tech-sorting-hat.herokuapp.com_ <br>
+**Staging environment delpoyed at [Heroku](https://staging-tech-sorting-hat.herokuapp.com/)**:  _https://staging-tech-sorting-hat.herokuapp.com_ <br>
 
 ## Getting started
 
@@ -31,12 +31,11 @@ This framework was chosen for the following reasons:
 | ------ | ----------------------- | -------------- | -------------------------------------------- |
 | GET    | `/api/questions` | all users | Returns all the questions for the quiz. |
 | GET    | `/api/questions/:id` | all users| Retrieve an existing question.             |
-| GET    | `/api/questions/:id/answers/:questionId` | all users | Returns answers corresponding to a question.|
-| POST    | `/api/questions` | admin | Retrieve an existing question.             |
+| POST    | `/api/questions` | admin | Create a question.             |
 | PUT    | `/api/questions/:id` | admin | Modify an existing question.             |
-| DELETE | `/api/questions` | admin | Delete a question.                      |
+| DELETE | `/api/questions` | admin | Delete an existing question.                      |
 
-> GET to https://tech-sorting-hat.herokuapp.com`/api/questions` returns :
+> GET to `/api/questions` returns :
 ```
 [
     {
@@ -50,7 +49,7 @@ This framework was chosen for the following reasons:
 ]
 ```
 
-> GET to https://tech-sorting-hat.herokuapp.com`/api/questions/:id` returns :
+> GET to `/api/questions/:id` returns :
 ```
 {
     "id": 1,
@@ -85,7 +84,7 @@ This framework was chosen for the following reasons:
 ]
 ```
 
-> GET to https://tech-sorting-hat.herokuapp.com `/api/answers/:id` returns :
+> GET to `/api/answers/:id` returns :
 ```
 {
     "id": 1,
@@ -95,7 +94,7 @@ This framework was chosen for the following reasons:
 ```
 
 
-> GET to https://tech-sorting-hat.herokuapp.com `/api/answers/questions/:questionId` returns :
+> GET to `/api/answers/questions/:questionId` returns :
 ```
 [
     {

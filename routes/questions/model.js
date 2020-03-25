@@ -2,7 +2,8 @@ const db = require('../../database/connection.js');
 
 module.exports = {
     find,
-    findById
+    findById,
+    addQuestion
 }
 
 function find() {
@@ -13,4 +14,8 @@ function findById(id) {
     return db('questions')
         .where({ id })
         .first();
+}
+
+function addQuestion(question) {
+    return db('questions').insert(question, 'id');
 }

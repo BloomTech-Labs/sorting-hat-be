@@ -48,4 +48,18 @@ router.get('/:id/answers', (req, res) => {
     })
 });
 
+router.post('/',(req, res) => {
+    const question = req.body;
+    
+    Questions.addQuestion(question)
+    .then(added => {
+        res.status(201).json(added);
+    })
+    .catch(({ name, message, stack, code }) => {
+        console.log({ name, message, stack, code });
+
+        res.status(500).json({ name, message, stack, code });
+    })
+});
+
 module.exports = router;
