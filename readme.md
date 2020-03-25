@@ -25,7 +25,7 @@ This framework was chosen for the following reasons:
 
 ## Endpoints
 
-#### Questions Routes
+### Questions Routes
 
 | Method | Endpoint                | Access Control | Description                                  |
 | ------ | ----------------------- | -------------- | -------------------------------------------- |
@@ -35,7 +35,7 @@ This framework was chosen for the following reasons:
 | PUT    | `/api/questions/:id` | admin | Modify an existing question.             |
 | DELETE | `/api/questions` | admin | Delete an existing question.                      |
 
-> GET to `/api/questions` returns :
+> GET `/api/questions` returns :
 ```
 [
     {
@@ -49,7 +49,7 @@ This framework was chosen for the following reasons:
 ]
 ```
 
-> GET to `/api/questions/:id` returns :
+> GET `/api/questions/:id` returns :
 ```
 {
     "id": 1,
@@ -57,7 +57,22 @@ This framework was chosen for the following reasons:
 }
 ```
 
-#### Answers Routes
+> POST `/api/questions` | input should be in this format:
+```
+{
+    "question": "Sample question goes here"
+}
+```
+
+> PUT `/api/questions` | input should be in this format:
+```
+{
+    "question": "Updated sample question goes here",
+    "id": 10
+}
+```
+
+### Answers Routes
 
 | Method | Endpoint                | Access Control      | Description                                        |
 | ------ | ----------------------- | ------------------- | -------------------------------------------------- |
@@ -68,7 +83,7 @@ This framework was chosen for the following reasons:
 | PUT    | `/api/answers/:id` | admin | Update a specific answer |
 | DELETE | `/api/answers/:id` | admin | Delete a specific answer |
 
-> GET to `/api/answers` returns :
+> GET `/api/answers` returns :
 ```
 [
     {
@@ -84,7 +99,7 @@ This framework was chosen for the following reasons:
 ]
 ```
 
-> GET to `/api/answers/:id` returns :
+> GET `/api/answers/:id` returns :
 ```
 {
     "id": 1,
@@ -94,7 +109,7 @@ This framework was chosen for the following reasons:
 ```
 
 
-> GET to `/api/answers/questions/:questionId` returns :
+> GET `/api/answers/questions/:questionId` returns :
 ```
 [
     {

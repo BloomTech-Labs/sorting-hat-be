@@ -62,4 +62,20 @@ router.post('/',(req, res) => {
     })
 });
 
+router.put('/',(req, res) => {
+    const id = req.body.id;
+    const changes = req.body;    
+    console.log('changes', changes, 'id', id);
+    
+    Questions.editQuestion(changes, id)
+    .then(edited => {
+        res.json(edited);
+    })
+    .catch(({ name, message, stack, code }) => {
+        console.log({ name, message, stack, code });
+
+        res.status(500).json({ name, message, stack, code });
+    })
+});
+
 module.exports = router;
