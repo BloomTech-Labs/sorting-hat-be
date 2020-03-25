@@ -2,8 +2,8 @@
 
 # API Documentation
 
-#### Backend delpoyed at [Heroku](https://tech-sorting-hat.herokuapp.com/) <br>
-#### staging environment delpoyed at [Heroku](https://staging-tech-sorting-hat.herokuapp.com/) <br>
+**Backend delpoyed at [Heroku](https://tech-sorting-hat.herokuapp.com/)**:  _https://tech-sorting-hat.herokuapp.com_ <br>
+**Staging environment delpoyed at [Heroku](https://staging-tech-sorting-hat.herokuapp.com/)**:  _https://staging-tech-sorting-hat.herokuapp.com_ <br>
 
 ## Getting started
 
@@ -25,17 +25,17 @@ This framework was chosen for the following reasons:
 
 ## Endpoints
 
-#### Questions Routes
+### Questions Routes
 
 | Method | Endpoint                | Access Control | Description                                  |
 | ------ | ----------------------- | -------------- | -------------------------------------------- |
-| GET    | `/api/questions` | all questions      | Returns all the questions for the quiz. |
-| GET    | `/api/questions/:id` | specific question         | Retrieve an existing question.             |
-| POST    | `/api/questions` | specific question         | Retrieve an existing question.             |
-| PUT    | `/api/questions/:id` | specific question         | Modify an existing question.             |
-| DELETE | `/api/questions` | specific question         | Delete a question.                      |
+| GET    | `/api/questions` | all users | Returns all the questions for the quiz. |
+| GET    | `/api/questions/:id` | all users| Retrieve an existing question.             |
+| POST    | `/api/questions` | admin | Create a question.             |
+| PUT    | `/api/questions/:id` | admin | Modify an existing question.             |
+| DELETE | `/api/questions/:id` | admin | Delete an existing question.                      |
 
-> GET to https://tech-sorting-hat.herokuapp.com`/api/questions` returns :
+> GET `/api/questions` returns :
 ```
 [
     {
@@ -49,7 +49,7 @@ This framework was chosen for the following reasons:
 ]
 ```
 
-> GET to https://tech-sorting-hat.herokuapp.com`/api/questions/:id` returns :
+> GET `/api/questions/:id` returns :
 ```
 {
     "id": 1,
@@ -57,18 +57,32 @@ This framework was chosen for the following reasons:
 }
 ```
 
-#### Answers Routes
+> POST `/api/questions` input sample:
+```
+{
+    "question": "Sample question goes here"
+}
+```
+
+> PUT `/api/questions/:id` input sample:
+```
+{
+    "question": "Updated sample question goes here"
+}
+```
+
+### Answers Routes
 
 | Method | Endpoint                | Access Control      | Description                                        |
 | ------ | ----------------------- | ------------------- | -------------------------------------------------- |
-| GET    | `/api/answers`        | all answers           | Returns answers for all the questions of the quiz.               |
-| GET    | `/api/answers/:id`    | specific answer | Returns a specific answer by its ID.             |
-| GET    | `/api/answers/:questionId`        | answers that share questionId | Returns answers for a single question.                    |
-| POST   | `/api/answers/:questionId` | specific answer to question     | Creates a new answer choice for a question |
-| PUT    | `/api/answers/:id` | specific answer | Update a specific answer |
-| DELETE | `/api/answers/:id` | specific answer | Delete a specific answer |
+| GET    | `/api/answers`        | all users | Returns answers for all the questions of the quiz.               |
+| GET    | `/api/answers/:id`    | all users| Returns a specific answer by its ID.             |
+| GET    | `/api/answers/questions/:questionId` | all users | Returns all answers associated with that question. |
+| POST    | `/api/answers/questions/:questionId` | admin | Create an answer for a specific question. |
+| PUT    | `/api/answers/:id` | admin | Update a specific answer. |
+| DELETE | `/api/answers/:id` | admin | Delete a specific answer. |
 
-> GET to https://tech-sorting-hat.herokuapp.com`/api/answers` returns :
+> GET `/api/answers` returns :
 ```
 [
     {
@@ -84,11 +98,106 @@ This framework was chosen for the following reasons:
 ]
 ```
 
-> GET to https://tech-sorting-hat.herokuapp.com`/api/answers/:id` returns :
+> GET `/api/answers/:id` returns :
 ```
 {
-    "choice": "Nulla et pellentesque, facilisis pede",
     "id": 1,
+    "choice": "Nulla et pellentesque, facilisis pede",
     "question_id": 1
+}
+```
+
+> GET `/api/answers/questions/:questionId` returns :
+```
+[
+    {
+        "id": 1,
+        "choice": "Nulla et pellentesque, facilisis pede",
+        "question_id": 1
+    },
+    {
+        "id": 2,
+        "choice": "This is an answer to the question",
+        "question_id": 1
+    }
+]
+```
+
+> POST `/api/answers/questions/:questionId` input sample:
+```
+{
+    "choice": "Write a possible answer to a question here"
+}
+```
+
+> PUT `/api/answers/:id` input sample:
+```
+{
+    "choice": "Update an existing answer here"
+}
+```
+
+### Tracks Routes
+
+| Method | Endpoint                | Access Control | Description                                  |
+| ------ | ----------------------- | -------------- | -------------------------------------------- |
+| GET    | `/api/tracks` | all users      | Returns all the tracks and the corresponding points per answer choice. |
+| GET    | `/api/tracks/:id` | all users | Returns all the points associated with each track per answer choice. |
+| POST    | `/api/tracks/:answerId` | admin         | Create a new track.             |
+| PUT    | `/api/tracks/:id` | admin         | Modify an existing track.        |
+| DELETE | `/api/tracks/:id` | admin         | Delete an existing track.        |
+
+> GET `/api/tracks` returns:
+```
+    {
+        "id": 1,
+        "name": "fullstack",
+        "description": "This is fullstack track description",
+        "link": "https://lambdaschool.com/courses/full-stack-web-development",
+        "points": "3.90",
+        "toggle": true,
+        "answer_id": 1
+    },
+    {
+        "id": 2,
+        "name": "iOS",
+        "description": "This is fullstack track description",
+        "link": "https://lambdaschool.com/courses/ios-development",
+        "points": "1.60",
+        "toggle": true,
+        "answer_id": 1
+    }
+```
+
+> GET `/api/tracks/:id` returns:
+```
+{
+    "id": 3,
+    "name": "android",
+    "description": "This is fullstack track description",
+    "link": null,
+    "points": "0.90",
+    "toggle": true,
+    "answer_id": 1
+}
+```
+
+> POST `/api/tracks/:id`  input sample:
+```
+{
+    "name": "android",
+    "description": "This is fullstack track description",
+    "link": "putOptionalLinkHere.com",
+    "points": "2",
+}
+```
+
+> PUT `/api/tracks/:id`  input sample:
+```
+{
+    "name": "android",
+    "description": "This is fullstack track description",
+    "link": "putOptionalLinkHere.com",
+    "points": "2",
 }
 ```

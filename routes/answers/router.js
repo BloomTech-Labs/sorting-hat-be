@@ -14,4 +14,82 @@ router.get('/', (req, res) => {
         })
 });
 
+router.get('/:id', (req, res) => {
+    const { id } = req.params;
+    console.log('id', id);
+    
+    Answers.findById(id)
+    .then(answer => {
+        console.log('answer', answer);
+        
+        res.json(answer);
+    })
+    .catch(({ name, message, stack, code }) => {
+        console.log({ name, message, stack, code });
+        
+        res.status(500).json({ name, message, stack, code });
+    })
+});
+
+router.get('/questions/:questionId', (req, res) => {
+    const { questionId } = req.params;
+    
+    Answers.findByQuestion(questionId)
+    .then(answer => {
+        console.log('answer', answer);
+        
+        res.json(answer);
+    })
+    .catch(({ name, message, stack, code }) => {
+        console.log({ name, message, stack, code });
+
+        res.status(500).json({ name, message, stack, code });
+    })
+});
+
+router.post('/questions/:questionId', (req, res) => {
+    const { questionId } = req.params;
+    const choice = req.body;
+    choice.question_id = questionId;
+    
+    Answers.addChoice(choice, questionId)
+    .then(inserted => {
+        res.status(201).json(inserted);
+    })
+    .catch(({ name, message, stack, code }) => {
+        console.log({ name, message, stack, code });
+
+        res.status(500).json({ name, message, stack, code });
+    })
+});
+
+router.put('/:id',(req, res) => {
+    const id = req.params.id;
+    const changes = req.body;    
+    
+    Answers.editAnswer(changes, id)
+    .then(edited => {
+        res.json(edited);
+    })
+    .catch(({ name, message, stack, code }) => {
+        console.log({ name, message, stack, code });
+
+        res.status(500).json({ name, message, stack, code });
+    })
+});
+
+router.delete('/:id',(req, res) => {
+    const id = req.params.id;
+    
+    Answers.delAnswer(id)
+    .then(count => {
+        res.json(count);
+    })
+    .catch(({ name, message, stack, code }) => {
+        console.log({ name, message, stack, code });
+
+        res.status(500).json({ name, message, stack, code });
+    })
+});
+
 module.exports = router;
