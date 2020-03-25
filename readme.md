@@ -143,6 +143,61 @@ This framework was chosen for the following reasons:
 | ------ | ----------------------- | -------------- | -------------------------------------------- |
 | GET    | `/api/tracks` | all users      | Returns all the tracks and the corresponding points per answer choice. |
 | GET    | `/api/tracks/:id` | all users | Returns all the points associated with each track per answer choice. |
-| POST    | `/api/tracks` | admin         | Create a new track.             |
-| PUT    | `/api/tracks` | admin         | Modify an existing track.        |
-| DELETE | `/api/tracks` | admin         | Delete an existing track.        |
+| POST    | `/api/tracks/:answerId` | admin         | Create a new track.             |
+| PUT    | `/api/tracks/:id` | admin         | Modify an existing track.        |
+| DELETE | `/api/tracks/:id` | admin         | Delete an existing track.        |
+
+> GET `/api/tracks` returns:
+```
+    {
+        "id": 1,
+        "name": "fullstack",
+        "description": "This is fullstack track description",
+        "link": "https://lambdaschool.com/courses/full-stack-web-development",
+        "points": "3.90",
+        "toggle": true,
+        "answer_id": 1
+    },
+    {
+        "id": 2,
+        "name": "iOS",
+        "description": "This is fullstack track description",
+        "link": "https://lambdaschool.com/courses/ios-development",
+        "points": "1.60",
+        "toggle": true,
+        "answer_id": 1
+    }
+```
+
+> GET `/api/tracks/:id` returns:
+```
+{
+    "id": 3,
+    "name": "android",
+    "description": "This is fullstack track description",
+    "link": null,
+    "points": "0.90",
+    "toggle": true,
+    "answer_id": 1
+}
+```
+
+> POST `/api/tracks/:id`  input sample:
+```
+{
+    "name": "android",
+    "description": "This is fullstack track description",
+    "link": "putOptionalLinkHere.com",
+    "points": "2",
+}
+```
+
+> PUT `/api/tracks/:id`  input sample:
+```
+{
+    "name": "android",
+    "description": "This is fullstack track description",
+    "link": "putOptionalLinkHere.com",
+    "points": "2",
+}
+```

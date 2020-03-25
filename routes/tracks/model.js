@@ -2,7 +2,10 @@ const db = require('../../database/connection.js');
 
 module.exports = {
     find,
-    findById
+    findById,
+    createTrack,
+    removeTrack,
+    editTrack
 }
 
 function find() {
@@ -13,4 +16,22 @@ function findById(id) {
     return db('tracks')
         .where({ id })
         .first();
+}
+
+function createTrack(body) {
+    return db('tracks')
+        .join('answers', 'answers.id', 'tracks.answer_id')
+        .insert(body, 'id');
+}
+
+function removeTrack(id) {
+    return db('tracks')
+        .where({ id })
+        .delete()
+}
+
+function editTrack(body, id) {
+    return db('tracks')
+        .update(body)
+        .where({ id })
 }
