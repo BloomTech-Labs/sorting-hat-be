@@ -32,8 +32,6 @@ describe('questions router', () => {
                 expect(res.body).toEqual({ error: 'Couldn\'t retrieve a question with id of 1000' })
             })
         });
-
-        
     })
 
     describe('POST /api/questions', function () {
@@ -42,6 +40,16 @@ describe('questions router', () => {
             .post('/api/questions')
             .send({ question: `${Date.now()}` })
             .expect(201);
+        });
+
+        it('Should send back an error saying missing fields', function () {
+            return request(server)
+            .post('/api/questions')
+            .send({ question: '' })
+            .expect(400)
+            .then(res => {
+                expect(res.body).toEqual({ 'message': 'missing required question field' })
+            });
         });
     })
 
