@@ -25,40 +25,40 @@ describe('tracks router', () => {
         });
     })
     
-    describe('POST /api/tracks/:answerId', function () {
-        it('Create a new track.', function () {
-            return request(server)
-            .post('/api/tracks/1')
-            .send({
-                "name": "android",
-                "description": "This is fullstack track description",
-                "link": "putOptionalLinkHere.com",
-                "points": "2",
-            })
-            .expect(201);
-        });
-    })
+    // describe('POST /api/tracks/:answerId', function () {
+    //     it('Create a new track.', function () {
+    //         return request(server)
+    //         .post('/api/tracks/1')
+    //         .send({
+    //             "name": "android",
+    //             "description": "This is fullstack track description",
+    //             "link": "putOptionalLinkHere.com",
+    //             "points": "2",
+    //         })
+    //         .expect(201);
+    //     });
+    // })
 
-    describe('PUT /api/tracks/:id', function () {
-        it('Modify an existing track.', function () {
-            return request(server)
-            .put('/api/tracks/1')
-            .send({
-                "name": "android",
-                "description": "This is fullstack track description",
-                "link": "putOptionalLinkHere.com",
-                "points": "2",
-            })
-            .expect(200);
-        });
-    })
+    // describe('PUT /api/tracks/:id', function () {
+    //     it('Modify an existing track.', function () {
+    //         return request(server)
+    //         .put('/api/tracks/1')
+    //         .send({
+    //             "name": "android",
+    //             "description": "This is fullstack track description",
+    //             "link": "putOptionalLinkHere.com",
+    //             "points": "2",
+    //         })
+    //         .expect(200);
+    //     });
+    // })
 
-    describe('DELETE /api/tracks/:id', function () {
-        it('Delete an existing track..', function () {
-            return request(server)
-            .delete('/api/tracks/1')
-            .expect(200);
-        });
-    })
+    // describe('DELETE /api/tracks/:id', function () {
+    //     it('Delete an existing track..', function () {
+    //         return request(server)
+    //         .delete('/api/tracks/1')
+    //         .expect(200);
+    //     });
+    // })
     
 });
