@@ -51,7 +51,7 @@ router.post('/', validateInput, (req, res) => {
 });
 
 router.put('/:id', validateId, (req, res) => {
-    const id = req.params.id;
+    const { id } = req.params;
     const changes = req.body;    
     
     Questions.editQuestion(changes, id)
@@ -59,13 +59,12 @@ router.put('/:id', validateId, (req, res) => {
         res.json(edited);
     })
     .catch(() => {
-
         res.status(500).json({ error: 'Unable to edit question' });
     })
 });
 
 router.delete('/:id', validateId, (req, res) => {
-    const id = req.params.id;
+    const { id } = req.params;
     
     Questions.delQuestion(id)
     .then(count => {
@@ -84,7 +83,8 @@ function validateId(req, res, next) {
 
     Questions.findById(id)
     .then(question => {
-      if( !Object.keys(question).length ){
+      if( question === undefined ){
+        
         res.status(400).json({ message: "invalid question id" });
       } else next();
     })

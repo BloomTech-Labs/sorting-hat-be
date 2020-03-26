@@ -1,8 +1,15 @@
 require('dotenv').config({ path: '../../config/.env'});
 const request = require('supertest');
 const server = require('../api/server.js');
+const db = require('../../database/connection.js');
 
-describe('questions router', () => {
+beforeAll(async function() {
+    // await db.raw('ALTER TABLE answers DROP CONSTRAINT answers_question_id_foreign')
+    // await db.raw('ALTER TABLE tracks DROP CONSTRAINT tracks_question_id_foreign')
+    await db.seed.run()
+})
+
+describe('questions router', function () {
     describe('test environment', function () {
         it('should use the staging environment', function () {
             expect(process.env.NODE_ENV).toBe('staging');
@@ -27,9 +34,9 @@ describe('questions router', () => {
         it('Check if the question exists.', function () {
             return request(server)
             .get('/api/questions/1000')
-            .expect(500)
+            .expect(400)
             .then(res => {
-                expect(res.body).toEqual({ error: 'Couldn\'t retrieve a question with id of 1000' })
+                expect(res.body).toEqual({ "message": "invalid question id" })
             })
         });
     })
@@ -71,17 +78,17 @@ describe('questions router', () => {
             .expect(200);
         });
 
-        it('Modify an existing question.', function () {
+        it('Should return an error of invalid ID.', function () {
             return request(server)
             .put('/api/questions/100000')
             .send({ question: `${Date.now()}` })
-            .expect(500)
+            .expect(400)
             .then(res => {
-                expect(res.body).toEqual({ error: `Couldn't retrieve a question with id of 100000` })
+                expect(res.body).toEqual({ "message": "invalid question id" })
             });
         });
 
-        it('Modify an existing question.', function () {
+        it('Should return a 500, unable to edit question', function () {
             return request(server)
             .put('/api/questions/1')
             .send({})
@@ -95,13 +102,17 @@ describe('questions router', () => {
     describe('DELETE /api/questions/:id', function () {
         it('Delete an existing question.', function () {
             return request(server)
-            .post('/api/questions')
-            .send({ question: `${Date.now()}` })
-            .then(() => {
-                request(server)
-                .delete('/api/questions/1')
-                .expect(200);
-            });
+                .delete('/api/questions/6')
+                .expect(200)
+        })
+
+        it('return invalid ID', function () {
+            return request(server)
+                .delete('/api/questions/10000')
+                .expect(400)
+                .then(res => {
+                    expect(res.body).toEqual({ "message": "invalid question id" })
+                });
         })
     })
 });
