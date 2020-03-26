@@ -5,11 +5,14 @@ exports.seed = function(knex) {
     .then(function () {
       // Inserts seed entries
       const questions = [
-        { question: 'Ultrices neque ullamcorper, arcu luctus, sapien congue amet elit nibh?' },
-        { question: 'Lorem ipsum dolor sit amet, wisi eget dolor montes nulla odio, nonummy est parturient quis parturient amet?' },
-        { question: 'Consectetuer penatibus sit sit risus pharetra et?' },
-        { question: 'At porta eros turpis mauris varius iaculis, eros eu nibh lorem et?' },
-        { question: 'What\'s the meaning to life?' }
+        { question: 'Which describes your preferred work environment?' },
+        { question: 'How do you learn?' },
+        { question: 'What do you find more fascinating?' },
+        { question: 'How do you problem solve?' },
+        { question: 'When constructing a new chair...' },
+        { question: 'How would you explain music to someone who\'s never listened to it before?' },
+        { question: 'What describes you better?' },
+        { question: 'What is the most appealing to you?' },
       ];
 
       return knex('questions').insert(questions);

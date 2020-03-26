@@ -44,12 +44,12 @@ describe('answers router', () => {
         });
     })
 
-    describe('DELETE /api/answers/:id', function () {
-        it('Delete a specific answer.', function () {
-            return request(server)
-            .delete('/api/answers/1')
-            .expect(500);
-        });
-    })
+    // describe('DELETE /api/answers/:id', function () {
+    //     it('Delete a specific answer.', function () {
+    //         return request(server)
+    //         .delete('/api/answers/1')
+    //         .expect(500);
+    //     });
+    // })
 
 });
