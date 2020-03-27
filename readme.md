@@ -61,7 +61,7 @@ This framework was chosen for the following reasons:
 | Method | Endpoint                | Access Control | Description                                  |
 | ------ | ----------------------- | -------------- | -------------------------------------------- |
 | GET    | `/api/points` | all users      | Returns all the points of each track associated with each answer choice. |
-| GET    | `/api/points/:answerId` | all users | Returns a track based on its ID. |
+| GET    | `/api/points/:answerId` | all users | Returns a points associated with an asnwer choice. |
 | POST    | `/api/points` | admin         | Creates a new track.             |
 | PUT    | `/api/points/:id` | admin         | Modify an existing track.        |
 | DELETE | `/api/points/:id` | admin         | Delete an existing track.        |
@@ -250,3 +250,43 @@ This framework was chosen for the following reasons:
     }
 ]
 ```
+
+> GET `/api/points/:answerId` returns:
+```
+[
+    {
+        "points": "4.30",
+        "answer_id": 1,
+        "track_id": 1
+    },
+    {
+        "points": "2.30",
+        "answer_id": 1,
+        "track_id": 2
+    }
+]
+```
+
+## Actions
+
+`getOrgs()` -> Returns all organizations
+
+`getOrg(orgId)` -> Returns a single organization by ID
+
+`addOrg(org)` -> Returns the created org
+
+`updateOrg(orgId)` -> Update an organization by ID
+
+`deleteOrg(orgId)` -> Delete an organization by ID
+<br>
+<br>
+<br>
+`getUsers(orgId)` -> if no param all users
+
+`getUser(userId)` -> Returns a single user by user ID
+
+`addUser(user object)` --> Creates a new user and returns that user. Also creates 7 availabilities defaulted to hours of operation for their organization.
+
+`updateUser(userId, changes object)` -> Updates a single user by ID.
+
+`deleteUser(userId)` -> deletes everything dependent on the user
