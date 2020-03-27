@@ -3,11 +3,10 @@ const request = require('supertest');
 const server = require('../api/server.js');
 const db = require('../../database/connection.js');
 
-// beforeAll(async function() {
-//     // await db.raw('ALTER TABLE answers DROP CONSTRAINT answers_question_id_foreign')
-//     // await db.raw('ALTER TABLE tracks DROP CONSTRAINT tracks_question_id_foreign')
-//     await db.seed.run()
-// })
+beforeAll(async function() {
+    await db.raw('ALTER TABLE answers DROP CONSTRAINT answers_question_id_foreign')
+    await db.raw('ALTER TABLE points DROP CONSTRAINT points_answer_id_foreign')
+})
 
 describe('questions router', function () {
     describe('test environment', function () {
@@ -88,35 +87,38 @@ describe('questions router', function () {
             });
         });
 
-        // it('Should return a 500, unable to edit question', function () {
-        //     return request(server)
-        //     .put('/api/questions/1')
-        //     .send({})
-        //     .expect(500)
-        //     .then(res => {
-        //         expect(res.body).toEqual({ "error": "Unable to edit question" })
-        //     });
-        // });
+        it('Should return a 500, unable to edit question', function () {
+            return request(server)
+            .put('/api/questions/1')
+            .send({})
+            .expect(500)
+            .then(res => {
+                expect(res.body).toEqual({ "error": "Unable to edit question" })
+            });
+        });
     })
 
-    // describe('DELETE /api/questions/:id', function () {
-    //     it('Delete an existing question.', function () {
-    //         return request(server)
-    //             .delete('/api/questions/6')
-    //             .expect(200)
-    //     })
+    describe('DELETE /api/questions/:id', function () {
+        it('Delete an existing question.', function () {
+            return request(server)
+                .delete('/api/questions/7')
+                .expect(200)
+        })
 
-    //     it('return invalid ID', function () {
-    //         return request(server)
-    //             .delete('/api/questions/10000')
-    //             .expect(400)
-    //             .then(res => {
-    //                 expect(res.body).toEqual({ "message": "invalid question id" })
-    //             });
-    //     })
-    // })
+        it('return invalid ID', function () {
+            return request(server)
+                .delete('/api/questions/10000')
+                .expect(400)
+                .then(res => {
+                    expect(res.body).toEqual({ "message": "invalid question id" })
+                });
+        })
+    })
 });
 
 afterAll(async () => {
-	await new Promise(resolve => setTimeout(() => resolve(), 500)); // avoid jest open handle error
+    await new Promise(resolve => setTimeout(() => resolve(), 500)); // avoid jest open handle error
+    await db.seed.run()
+    await db.raw('ALTER TABLE points ADD CONSTRAINT points_answer_id_foreign FOREIGN KEY(answer_id) REFERENCES answers(id)')
+    await db.raw('ALTER TABLE answers ADD CONSTRAINT answers_question_id_foreign FOREIGN KEY(question_id) REFERENCES questions(id)')
 });
