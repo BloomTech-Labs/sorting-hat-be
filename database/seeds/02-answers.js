@@ -39,10 +39,10 @@ exports.seed = function(knex) {
         { choice: 'I use my phone for everything.', question_id: 5 },
         { choice: 'Whichever is more functional.', question_id: 5 },
 
-        { choice: 'I prefer functionality over design', question_id: 5 },
-        { choice: 'Quality over quantity.', question_id: 5 },
-        { choice: 'Reach all people over the right people.', question_id: 5 },
-        { choice: 'Drive on the road, rather than an open field.', question_id: 5 },
+        { choice: 'I prefer functionality over design', question_id: 6 },
+        { choice: 'Quality over quantity.', question_id: 6 },
+        { choice: 'Reach all people over the right people.', question_id: 6 },
+        { choice: 'Drive on the road, rather than an open field.', question_id: 6 },
       ];
 
       return knex('answers').insert(answers);
