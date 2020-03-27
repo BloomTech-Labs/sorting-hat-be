@@ -149,24 +149,26 @@ This framework was chosen for the following reasons:
 
 > GET `/api/tracks` returns:
 ```
+[
     {
         "id": 1,
-        "name": "fullstack",
-        "description": "This is fullstack track description",
-        "link": "https://lambdaschool.com/courses/full-stack-web-development",
-        "points": "3.90",
-        "toggle": true,
-        "answer_id": 1
+        "name": "UX Design",
+        "description": "UX Designers are focused on the user . . .",
+        "shortDesc": "Design great experiences for users",
+        "link": "placeholder.com",
+        "strengths": "You enjoy talking with people . . .",
+        "toggle": true
     },
     {
         "id": 2,
-        "name": "iOS",
-        "description": "This is fullstack track description",
-        "link": "https://lambdaschool.com/courses/ios-development",
-        "points": "1.60",
-        "toggle": true,
-        "answer_id": 1
+        "name": "Full Stack",
+        "description": "Full Stack Developers are able to . . .",
+        "shortDesc": "Create anything on the internet",
+        "link": "https://lambdaschool.com/courses/full-stack-web-development",
+        "strengths": "You are a bit of an introvert and enjoy close friends . . .",
+        "toggle": true
     }
+]
 ```
 
 > GET `/api/tracks/:id` returns:
