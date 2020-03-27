@@ -2,7 +2,6 @@ require('dotenv').config({ path: '../../config/.env'});
 const request = require('supertest');
 const server = require('../api/server.js');
 
-
 describe('answers router', () => {
     describe('test environment', function () {
         it('should use the staging environment', function () {
@@ -44,12 +43,16 @@ describe('answers router', () => {
         });
     })
 
-    // describe('DELETE /api/answers/:id', function () {
-    //     it('Delete a specific answer.', function () {
-    //         return request(server)
-    //         .delete('/api/answers/1')
-    //         .expect(500);
-    //     });
-    // })
+    describe('DELETE /api/answers/:id', function () {
+        it('Delete a specific answer.', function () {
+            return request(server)
+            .delete('/api/answers/33')
+            .expect(200);
+        });
+    })
 
+});
+
+afterAll(async () => {
+    await new Promise(resolve => setTimeout(() => resolve(), 500)); // avoid jest open handle error
 });
