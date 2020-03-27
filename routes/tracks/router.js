@@ -26,10 +26,9 @@ router.get('/:id', (req, res) => {
     })
 });
 
-router.post('/:answerId', (req, res) => {
-    const { answerId } = req.params;
+router.post('/', (req, res) => {
+
     const track = req.body;
-    track.answer_id = answerId;
 
     Tracks.createTrack(req.body)
     .then(created => {
