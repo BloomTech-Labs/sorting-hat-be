@@ -35,6 +35,43 @@ This framework was chosen for the following reasons:
 | PUT    | `/api/questions/:id` | admin | Modify an existing question.             |
 | DELETE | `/api/questions/:id` | admin | Delete an existing question.                      |
 
+### Answers Routes
+
+| Method | Endpoint                | Access Control      | Description                                        |
+| ------ | ----------------------- | ------------------- | -------------------------------------------------- |
+| GET    | `/api/answers`        | all users | Returns answers for all the questions of the quiz.               |
+| GET    | `/api/answers/:id`    | all users| Returns a specific answer by its ID.             |
+| GET    | `/api/answers/questions/:questionId` | all users | Returns all answers associated with that question. |
+| POST    | `/api/answers/questions/:questionId` | admin | Create an answer for a specific question. |
+| PUT    | `/api/answers/:id` | admin | Update a specific answer. |
+| DELETE | `/api/answers/:id` | admin | Delete a specific answer. |
+
+### Tracks Routes
+
+| Method | Endpoint                | Access Control | Description                                  |
+| ------ | ----------------------- | -------------- | -------------------------------------------- |
+| GET    | `/api/tracks` | all users      | Returns all the tracks and the corresponding points per answer choice. |
+| GET    | `/api/tracks/:id` | all users | Returns a track based on its ID. |
+| POST    | `/api/tracks` | admin         | Creates a new track.             |
+| PUT    | `/api/tracks/:id` | admin         | Modify an existing track.        |
+| DELETE | `/api/tracks/:id` | admin         | Delete an existing track.        |
+
+### Points Routes
+
+| Method | Endpoint                | Access Control | Description                                  |
+| ------ | ----------------------- | -------------- | -------------------------------------------- |
+| GET    | `/api/points` | all users      | Returns all the points of each track associated with each answer choice. |
+| GET    | `/api/points/:answerId` | all users | Returns a points associated with an asnwer choice. |
+| POST    | `/api/points` | admin         | Creates a new track.             |
+| PUT    | `/api/points/:id` | admin         | Modify an existing track.        |
+| DELETE | `/api/points/:id` | admin         | Delete an existing track.        |
+
+# Data Model
+
+#### QUESTIONS
+
+---
+
 > GET `/api/questions` returns :
 ```
 [
@@ -71,16 +108,9 @@ This framework was chosen for the following reasons:
 }
 ```
 
-### Answers Routes
+#### ANSWERS
 
-| Method | Endpoint                | Access Control      | Description                                        |
-| ------ | ----------------------- | ------------------- | -------------------------------------------------- |
-| GET    | `/api/answers`        | all users | Returns answers for all the questions of the quiz.               |
-| GET    | `/api/answers/:id`    | all users| Returns a specific answer by its ID.             |
-| GET    | `/api/answers/questions/:questionId` | all users | Returns all answers associated with that question. |
-| POST    | `/api/answers/questions/:questionId` | admin | Create an answer for a specific question. |
-| PUT    | `/api/answers/:id` | admin | Update a specific answer. |
-| DELETE | `/api/answers/:id` | admin | Delete a specific answer. |
+---
 
 > GET `/api/answers` returns :
 ```
@@ -137,15 +167,9 @@ This framework was chosen for the following reasons:
 }
 ```
 
-### Tracks Routes
+#### TRACKS
 
-| Method | Endpoint                | Access Control | Description                                  |
-| ------ | ----------------------- | -------------- | -------------------------------------------- |
-| GET    | `/api/tracks` | all users      | Returns all the tracks and the corresponding points per answer choice. |
-| GET    | `/api/tracks/:id` | all users | Returns all the points associated with each track per answer choice. |
-| POST    | `/api/tracks/:answerId` | admin         | Create a new track.             |
-| PUT    | `/api/tracks/:id` | admin         | Modify an existing track.        |
-| DELETE | `/api/tracks/:id` | admin         | Delete an existing track.        |
+---
 
 > GET `/api/tracks` returns:
 ```
@@ -174,23 +198,24 @@ This framework was chosen for the following reasons:
 > GET `/api/tracks/:id` returns:
 ```
 {
-    "id": 3,
-    "name": "android",
-    "description": "This is fullstack track description",
-    "link": null,
-    "points": "0.90",
-    "toggle": true,
-    "answer_id": 1
+    "id": 1,
+    "name": "UX Design",
+    "description": "UX Designers are focused on the user . . .",
+    "shortDesc": "Design great experiences for users"
+    "link": "placeholder.com",
+    "strengths": "You enjoy talking with people . . .",
+    "toggle": true
 }
 ```
 
-> POST `/api/tracks/:id`  input sample:
+> POST `/api/tracks`  input sample:
 ```
 {
-    "name": "android",
+    "name": "New Track",
     "description": "This is fullstack track description",
+    "shortDesc": "short description of the track"
     "link": "putOptionalLinkHere.com",
-    "points": "2",
+    "strengths": "You enjoy talking with people . . .",
 }
 ```
 
@@ -198,8 +223,70 @@ This framework was chosen for the following reasons:
 ```
 {
     "name": "android",
-    "description": "This is fullstack track description",
+    "description": "Update track description",
+    "shortDesc": "Update short description of the track",
     "link": "putOptionalLinkHere.com",
-    "points": "2",
+    "strengths": "You enjoy talking with people . . .",
+    "toggle": true
 }
 ```
+
+#### POINTS
+
+---
+
+> GET `/api/points` returns:
+```
+[
+    {
+        "points": "4.30",
+        "answer_id": 1,
+        "track_id": 1
+    },
+    {
+        "points": "2.30",
+        "answer_id": 1,
+        "track_id": 2
+    }
+]
+```
+
+> GET `/api/points/:answerId` returns:
+```
+[
+    {
+        "points": "4.30",
+        "answer_id": 1,
+        "track_id": 1
+    },
+    {
+        "points": "2.30",
+        "answer_id": 1,
+        "track_id": 2
+    }
+]
+```
+
+## Actions
+
+`getOrgs()` -> Returns all organizations
+
+`getOrg(orgId)` -> Returns a single organization by ID
+
+`addOrg(org)` -> Returns the created org
+
+`updateOrg(orgId)` -> Update an organization by ID
+
+`deleteOrg(orgId)` -> Delete an organization by ID
+<br>
+<br>
+<br>
+`getUsers(orgId)` -> if no param all users
+
+`getUser(userId)` -> Returns a single user by user ID
+
+`addUser(user object)` --> Creates a new user and returns that user. Also creates 7 availabilities defaulted to hours of operation for their organization.
+
+`updateUser(userId, changes object)` -> Updates a single user by ID.
+
+`deleteUser(userId)` -> deletes everything dependent on the user
