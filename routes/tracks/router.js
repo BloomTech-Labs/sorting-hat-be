@@ -1,4 +1,6 @@
 const Tracks = require('./model.js');
+const Answers = require('../answers/model.js');
+const Points = require('../points/model.js');
 const router = require('express').Router();
 
 router.get('/', (req, res) => {
@@ -7,7 +9,6 @@ router.get('/', (req, res) => {
             res.json(tracks);
         })
         .catch(() => {
-
 
             res.status(500).json({ error: 'Unable to retrieve tracks' });
         })
@@ -26,14 +27,32 @@ router.get('/:id', (req, res) => {
     })
 });
 
-router.post('/:answerId', (req, res) => {
-    const { answerId } = req.params;
-    const track = req.body;
-    track.answer_id = answerId;
-
+router.post('/', (req, res) => {
     Tracks.createTrack(req.body)
     .then(created => {
+        const trackId = created[0];
         res.status(201).json(created);
+
+        // initialize points associated with the new track for each answer
+        Answers.find()
+            .then(answers => {
+                
+                answers.map(item => {
+                    
+                    const point = {
+                        points: 0.00
+                    };
+                    
+                    point.answer_id = item.id;
+                    point.track_id = trackId;
+                    
+                    Points.createPoint(point)
+                    .then();
+                })
+            })
+            .catch(() => {
+                res.status(500).json({ error: 'Unable to retrieve answers' });
+            })
     })
     .catch(() => {
 

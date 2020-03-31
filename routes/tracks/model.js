@@ -20,7 +20,6 @@ function findById(id) {
 
 function createTrack(body) {
     return db('tracks')
-        .join('answers', 'answers.id', 'tracks.answer_id')
         .insert(body, 'id');
 }
 
