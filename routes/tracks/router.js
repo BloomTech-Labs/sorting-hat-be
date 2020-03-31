@@ -47,9 +47,7 @@ router.post('/', (req, res) => {
                     point.track_id = trackId;
                     
                     Points.createPoint(point)
-                    .then(() => {
-                        res.json(answers);
-                    })
+                    .then();
                 })
             })
             .catch(() => {

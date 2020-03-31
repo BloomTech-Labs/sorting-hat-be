@@ -1,4 +1,6 @@
 const Answers = require('./model.js');
+const Points = require('../points/model.js');
+const Tracks = require('../tracks/model.js');
 const router = require('express').Router();
 
 router.get('/', (req, res) => {
@@ -45,11 +47,34 @@ router.post('/questions/:questionId', (req, res) => {
     
     Answers.addChoice(choice, questionId)
     .then(inserted => {
-        res.status(201).json(inserted);
+        return inserted;
+    })
+    .then((inserted) => {
+        
+        const point = {
+            points: 0.00
+        };
+            
+        console.log('inserted', inserted[0]);
+        
+        
+        Tracks.find()
+        .then(tracks => {
+            console.log('tracks', tracks);
+            
+            tracks.map(track => {
+                point.track_id = track.id;
+                point.answer_id = inserted[0];
+                console.log('point:', point);
+                
+                Points.createPoint(point)
+                .then();
+            })
+        })
     })
     .catch(() => {
 
-        res.status(500).json({ error: 'Unable to create question' });
+        res.status(500).json({ error: 'Unable to create the answer choice' });
     })
 });
 
