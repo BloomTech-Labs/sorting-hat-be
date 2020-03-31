@@ -24,4 +24,19 @@ router.get("/:answerId", (req, res) => {
     })
 })
 
+router.post('/:answerId/:trackId', (req, res) => {
+    const { trackId, answerId } = req.params;
+    const point = req.body;
+    point.track_id = trackId;
+    point.answer_id = answerId;
+    
+    Points.createPoint(point)
+    .then(inserted => {
+        res.status(201).json(inserted);
+    })
+    .catch((name, message, stack, code) => {
+        res.status(500).json({name, message, stack, code});
+    })
+});
+
 module.exports = router;
