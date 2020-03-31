@@ -1,7 +1,8 @@
 
 exports.up = function(knex) {
     return knex.schema.createTable('points', tbl => {
-        tbl.primary(['answer_id', 'track_id']);
+        // tbl.primary(['answer_id', 'track_id']);
+        tbl.increments();
 
         tbl.decimal('points', 3, 2)
             .defaultTo(0);

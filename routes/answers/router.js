@@ -47,33 +47,23 @@ router.post('/questions/:questionId', (req, res) => {
     
     Answers.addChoice(choice, questionId)
     .then(inserted => {
-        return inserted;
-    })
-    .then((inserted) => {
-        
-        const point = {
-            points: 0.00
-        };
-            
-        console.log('inserted', inserted[0]);
-        
         
         Tracks.find()
         .then(tracks => {
-            console.log('tracks', tracks);
-            
+            res.status(200).json('OK');
             tracks.map(track => {
+                const point = {
+                    points: 0.00
+                };
                 point.track_id = track.id;
                 point.answer_id = inserted[0];
-                console.log('point:', point);
                 
-                Points.createPoint(point)
+                Points.createPointAnswer(point)
                 .then();
             })
         })
     })
     .catch(() => {
-
         res.status(500).json({ error: 'Unable to create the answer choice' });
     })
 });
