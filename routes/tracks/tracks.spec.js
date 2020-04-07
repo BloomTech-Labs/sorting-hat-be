@@ -44,7 +44,51 @@ describe('tracks router', () => {
 					strengths: 'You have many strengths',
 					link: 'placeholder.com'
 				})
-                .expect(400)
+				.expect(400)
+				.then((res) => {
+					expect(res.body).toEqual({ message: 'missing required track name field' });
+				});
+		});
+		it('missing required description field', function() {
+			return request(server)
+				.post('/api/tracks')
+				.send({
+					name: 'android',
+					description: '',
+					strengths: 'You have many strengths',
+					link: 'placeholder.com'
+				})
+				.expect(400)
+				.then((res) => {
+					expect(res.body).toEqual({ message: 'missing required track name field' });
+				});
+		});
+		it('missing required short description field', function() {
+			return request(server)
+				.post('/api/tracks')
+				.send({
+					name: 'android',
+					description: 'This is fullstack track description',
+					shortDesc: '',
+					strengths: 'You have many strengths',
+					link: 'placeholder.com'
+				})
+				.expect(400)
+				.then((res) => {
+					expect(res.body).toEqual({ message: 'missing required track name field' });
+				});
+		});
+		it('missing required strengths field', function() {
+			return request(server)
+				.post('/api/tracks')
+				.send({
+					name: 'android',
+					description: 'This is fullstack track description',
+					shortDesc: 'This is a short description',
+					strengths: '',
+					link: 'placeholder.com'
+				})
+				.expect(400)
 				.then((res) => {
 					expect(res.body).toEqual({ message: 'missing required track name field' });
 				});

@@ -98,17 +98,23 @@ function validateId(req, res, next) {
 
 function validateInput(req, res, next) {
 	if (Object.keys(req.body).length == 0) {
-        res.status(400).json({ message: 'missing required fields' })
-    } else if (blah) {
-        res.status(400).json({ message: 'missing a couple required fields' })
-    } else if (!req.body.name) {
-		res.status(400).json({ message: 'missing required name field' })
-	} else if (!req.body.description) {
-		res.status(400).json({ message: 'missing required description field' })
-	} else if (!req.body.shortDesc) {
-		res.status(400).json({ message: 'missing required short description field' })
-	} else if (!req.body.strengths) {
-		res.status(400).json({ message: 'missing required strengths field' })
+		res.status(400).json({ message: 'missing required fields' });
+		// } else if (req.body) {
+		// 	Object.keys(req.body).map((item) => {
+		// 		console.log(item[0]);
+		// 		// if (!item["name"]) {
+		// 		//     console.log("Name is missing")
+		// 		// }
+		// 	});
+	} else if (req.body) {
+		let jsonMess = [];
+		Object.entries(req.body).map((trackInfo) => {
+			console.log('trackInfo', trackInfo);
+			if (!trackInfo[1]) {
+				jsonMess.push(` ${trackInfo[0]}`);
+			}
+		});
+		res.status(400).json({ message: `The following are missing fields: ${jsonMess}` });
 	} else next();
 }
 
