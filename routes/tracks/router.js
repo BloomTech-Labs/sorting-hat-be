@@ -4,88 +4,112 @@ const Points = require('../points/model.js');
 const router = require('express').Router();
 
 router.get('/', (req, res) => {
-    Tracks.find()
-        .then(tracks => {
-            res.json(tracks);
-        })
-        .catch(() => {
-
-            res.status(500).json({ error: 'Unable to retrieve tracks' });
-        })
+	Tracks.find()
+		.then((tracks) => {
+			res.json(tracks);
+		})
+		.catch(() => {
+			res.status(500).json({ error: 'Unable to retrieve tracks' });
+		});
 });
 
-router.get('/:id', (req, res) => {
-    const { id } = req.params;
+router.get('/:id', validateId, (req, res) => {
+	const { id } = req.params;
 
-    Tracks.findById(id)
-    .then(track => {
-        res.json(track);
-    })
-    .catch(() => {
-
-        res.status(500).json({ error: 'Unable to retrieve track' });
-    })
+	Tracks.findById(id)
+		.then((track) => {
+			res.json(track);
+		})
+		.catch(() => {
+			res.status(500).json({ error: 'Unable to retrieve track' });
+		});
 });
 
-router.post('/', (req, res) => {
-    Tracks.createTrack(req.body)
-    .then(created => {
-        const trackId = created[0];
-        res.status(201).json(created);
+router.post('/', validateInput, (req, res) => {
+	Tracks.createTrack(req.body)
+		.then((created) => {
+			const trackId = created[0];
+			res.status(201).json(created);
 
-        // initialize points associated with the new track for each answer
-        Answers.find()
-            .then(answers => {
-                
-                answers.map(item => {
-                    
-                    const point = {
-                        points: 0.00
-                    };
-                    
-                    point.answer_id = item.id;
-                    point.track_id = trackId;
-                    
-                    Points.createPoint(point)
-                    .then();
-                })
-            })
-            .catch(() => {
-                res.status(500).json({ error: 'Unable to retrieve answers' });
-            })
-    })
-    .catch(() => {
+			// initialize points associated with the new track for each answer
+			Answers.find()
+				.then((answers) => {
+					answers.map((item) => {
+						const point = {
+							points: 0.0
+						};
 
-        res.status(500).json({ error: 'Unable to create track' });
-    })
+						point.answer_id = item.id;
+						point.track_id = trackId;
+
+						Points.createPoint(point).then();
+					});
+				})
+				.catch(() => {
+					res.status(500).json({ error: 'Unable to retrieve answers' });
+				});
+		})
+		.catch(() => {
+			res.status(500).json({ error: 'Unable to create track' });
+		});
 });
 
-router.delete('/:id', (req, res) => {
-    const { id } = req.params;
+router.delete('/:id', validateId, (req, res) => {
+	const { id } = req.params;
 
-    Tracks.removeTrack(id)
-    .then(deleted => {
-        res.json(deleted);
-    })
-    .catch(() => {
+	Tracks.removeTrack(id)
+		.then((deleted) => {
+			res.json(deleted);
+		})
+		.catch(() => {
+			res.status(500).json({ error: 'Unable to delete track' });
+		});
+});
 
-        res.status(500).json({ error: 'Unable to delete track' });
-    })
-})
+router.put('/:id', validateId, validateInput, (req, res) => {
+	const { id } = req.params;
+	const changes = req.body;
 
-router.put('/:id', (req, res) => {
-    const { id } = req.params;
-    const changes = req.body;
-    
-    Tracks.editTrack(changes, id)
-        .then(edited => {
-            res.json(edited);
-        })
-        .catch(() => {
+	Tracks.editTrack(changes, id)
+		.then((edited) => {
+			res.json(edited);
+		})
+		.catch(() => {
+			res.status(500).json({ error: 'Unable to edit track' });
+		});
+});
 
+// custom middleware
 
-            res.status(500).json({ error: 'Unable to edit track' });
-        })
-})
+function validateId(req, res, next) {
+	const { id } = req.params;
+
+	Tracks.findById(id)
+		.then((track) => {
+			if (track === undefined) {
+				res.status(400).json({ message: 'invalid track id' });
+			} else next();
+		})
+		.catch((err) => {
+			console.log(err);
+			res.status(500).json({ error: `Couldn't retrieve a track with id of ${id}` });
+		});
+}
+
+function validateInput(req, res, next) {
+	if (Object.keys(req.body).length == 0) {
+        res.status(400).json({ message: 'missing required fields' })
+    } else if (blah) {
+        res.status(400).json({ message: 'missing a couple required fields' })
+    } else if (!req.body.name) {
+		res.status(400).json({ message: 'missing required name field' })
+	} else if (!req.body.description) {
+		res.status(400).json({ message: 'missing required description field' })
+	} else if (!req.body.shortDesc) {
+		res.status(400).json({ message: 'missing required short description field' })
+	} else if (!req.body.strengths) {
+		res.status(400).json({ message: 'missing required strengths field' })
+	} else next();
+}
 
 module.exports = router;
