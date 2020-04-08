@@ -99,30 +99,26 @@ function validateId(req, res, next) {
 function validateInput(req, res, next) {
 	let jsonMess = [];
 	function checkArr() {
-		while (jsonMess.length < 3) {
+		while (jsonMess.length <= 3) {
 			return false;
 		}
+		console.log(jsonMess);
 		return true;
 	}
 	console.log(req.body.name);
 	if (Object.keys(req.body).length == 0) {
 		res.status(400).json({ message: 'missing required fields' });
-	} else if (
-		req.body.name === '' ||
-		req.body.name === undefined ||
-		(req.body.description === '' || req.body.description === undefined) ||
-		(req.body.shortDesc === '' || req.body.shotDesc === undefined)
-	) {
+	} else if (req.body.name === '' || req.body.description === '' || req.body.shortDesc === '') {
 		if (req.body.name === '' || req.body.name === undefined) {
-			jsonMess.push(' Name ');
+			jsonMess.push('Name');
 			checkArr();
 		}
 		if (req.body.description === '' || req.body.description === undefined) {
-			jsonMess.push(' Description ');
+			jsonMess.push(' Description');
 			checkArr();
 		}
 		if (req.body.shortDesc === '' || req.body.shortDesc === undefined) {
-			jsonMess.push(' Short Description ');
+			jsonMess.push(' Short Description');
 			checkArr();
 		}
 		if (checkArr() === false) {
