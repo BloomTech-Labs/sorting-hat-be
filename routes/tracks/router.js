@@ -99,31 +99,36 @@ function validateId(req, res, next) {
 function validateInput(req, res, next) {
 	let jsonMess = [];
 	function checkArr() {
-		while (jsonMess.length <= 3) {
-			return false;
+		if (req.body.name && req.body.description && req.body.shortDesc) {
+			return true;
 		}
-		console.log(jsonMess);
-		return true;
+		else {
+			do {
+				return false;
+			} while (jsonMess.length < 3);
+		}
 	}
-	console.log(req.body.name);
 	if (Object.keys(req.body).length == 0) {
 		res.status(400).json({ message: 'missing required fields' });
-	} else if (req.body.name === '' || req.body.description === '' || req.body.shortDesc === '') {
-		if (req.body.name === '' || req.body.name === undefined) {
-			jsonMess.push('Name');
-			checkArr();
-		}
-		if (req.body.description === '' || req.body.description === undefined) {
-			jsonMess.push(' Description');
-			checkArr();
-		}
-		if (req.body.shortDesc === '' || req.body.shortDesc === undefined) {
-			jsonMess.push(' Short Description');
-			checkArr();
-		}
-		if (checkArr() === false) {
-			res.status(400).json({ message: `The following are missing fields: ${jsonMess}` });
-		} else next();
+	}
+	if (req.body.name === '' || req.body.name === undefined) {
+		jsonMess.push('Name');
+		checkArr();
+	}
+	if (req.body.description === '' || req.body.description === undefined) {
+		jsonMess.push('Description');
+		checkArr();
+	}
+	if (req.body.shortDesc === '' || req.body.shortDesc === undefined) {
+		jsonMess.push('Short Description');
+		checkArr();
+	}
+	if (checkArr() === false) {
+		missing = jsonMess.toString();
+		formatted = missing.replace(/,/g, ', ');
+		res.status(400).json({ message: `The following are missing fields: ${formatted}` });
+	} else {
+		next();
 	}
 }
 

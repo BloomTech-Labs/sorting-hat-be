@@ -48,7 +48,7 @@ describe('tracks router', () => {
 				.expect(400)
 				.then((res) => {
 					expect(res.body).toEqual({
-						message: 'The following are missing fields:  name, description, shortDesc, strengths'
+						"message": "The following are missing fields: Name, Description, Short Description"
 					});
 				});
 		});
