@@ -48,7 +48,97 @@ describe('tracks router', () => {
 				.expect(400)
 				.then((res) => {
 					expect(res.body).toEqual({
-						"message": "The following are missing fields: Name, Description, Short Description"
+						"message": "The following fields are missing: Name, Description, Short Description"
+					});
+				});
+		});
+
+		it('Should return all the empty fields', function() {
+			return request(server)
+				.post('/api/tracks')
+				.send({
+					name: '',
+					description: '',
+					shortDesc: '',
+					strengths: '',
+					link: 'fakelink.com'
+				})
+				.expect(400)
+				.then((res) => {
+					expect(res.body).toEqual({
+						"message": "The following fields are missing: Name, Description, Short Description"
+					});
+				});
+		});
+
+		it('Should return all the empty fields', function() {
+			return request(server)
+				.post('/api/tracks')
+				.send({
+					name: '',
+					description: '',
+					shortDesc: '',
+					strengths: '',
+					link: 'fakelink.com'
+				})
+				.expect(400)
+				.then((res) => {
+					expect(res.body).toEqual({
+						"message": "The following fields are missing: Name, Description, Short Description"
+					});
+				});
+		});
+
+		it('Should return all the empty fields', function() {
+			return request(server)
+				.post('/api/tracks')
+				.send({
+					name: '',
+					description: '',
+					shortDesc: '',
+					strengths: '',
+					link: 'fakelink.com'
+				})
+				.expect(400)
+				.then((res) => {
+					expect(res.body).toEqual({
+						"message": "The following fields are missing: Name, Description, Short Description"
+					});
+				});
+		});
+
+		it('Should return all the empty fields', function() {
+			return request(server)
+				.post('/api/tracks')
+				.send({
+					name: '',
+					description: '',
+					shortDesc: '',
+					strengths: '',
+					link: 'fakelink.com'
+				})
+				.expect(400)
+				.then((res) => {
+					expect(res.body).toEqual({
+						"message": "The following fields are missing: Name, Description, Short Description"
+					});
+				});
+		});
+
+		it('Should return all the empty fields', function() {
+			return request(server)
+				.post('/api/tracks')
+				.send({
+					name: '',
+					description: '',
+					shortDesc: '',
+					strengths: '',
+					link: 'fakelink.com'
+				})
+				.expect(400)
+				.then((res) => {
+					expect(res.body).toEqual({
+						"message": "The following fields are missing: Name, Description, Short Description"
 					});
 				});
 		});
@@ -70,8 +160,8 @@ describe('tracks router', () => {
 	});
 
 	describe('DELETE /api/tracks/:id', function() {
-		it('Delete an existing track..', function() {
-			return request(server).delete('/api/tracks/6').expect(200);
+		it('Delete an existing track.', function() {
+			return request(server).delete('/api/tracks/5').expect(200);
 		});
 	});
 });

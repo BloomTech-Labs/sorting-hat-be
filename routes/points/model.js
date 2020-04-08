@@ -4,11 +4,12 @@ module.exports = {
     find,
     findById,
     createPoint,
-    createPointAnswer
+    createPointAnswer,
+    delPoint
 }
 
 function find() {
-    return db('points').select('points', 'answer_id', 'track_id');
+    return db('points').select('points', 'answer_id', 'track_id', 'id');
 }
 
 function findById(answerId) {
@@ -27,4 +28,10 @@ function createPoint(point) {
 function createPointAnswer(point) {
     return db('points')
     .insert(point, 'id', 'answer_id', 'track_id');
+}
+
+function delPoint(id) {
+    return db('points')
+        .where({ id })
+        .del();
 }

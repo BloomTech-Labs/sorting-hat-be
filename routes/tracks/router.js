@@ -55,15 +55,34 @@ router.post('/', validateInput, (req, res) => {
 });
 
 router.delete('/:id', validateId, (req, res) => {
-	const { id } = req.params;
+    const { id } = req.params;
 
-	Tracks.removeTrack(id)
-		.then((deleted) => {
-			res.json(deleted);
-		})
-		.catch(() => {
-			res.status(500).json({ error: 'Unable to delete track' });
-		});
+    Points.find()
+    .then((points) => {    
+        points.map((point) => {
+            if(point.track_id == id) {
+                Points.delPoint(point.id)
+                .then(count => {
+                    console.log('point.id', point.id);
+                    
+                    res.json(count);
+                })
+                .catch(() => {
+            
+                    res.status(500).json({ error: 'Unable to delete point' });
+                })
+                
+            }
+        });
+        Tracks.removeTrack(id)
+            .then((deleted) => {
+                res.json(deleted);
+            })
+            .catch(() => {
+                res.status(500).json({ error: 'Unable to delete track' });
+            });
+    });
+
 });
 
 router.put('/:id', validateId, validateInput, (req, res) => {
@@ -101,8 +120,7 @@ function validateInput(req, res, next) {
 	function checkArr() {
 		if (req.body.name && req.body.description && req.body.shortDesc) {
 			return true;
-		}
-		else {
+		} else {
 			do {
 				return false;
 			} while (jsonMess.length < 3);
@@ -126,7 +144,7 @@ function validateInput(req, res, next) {
 	if (checkArr() === false) {
 		missing = jsonMess.toString();
 		formatted = missing.replace(/,/g, ', ');
-		res.status(400).json({ message: `The following are missing fields: ${formatted}` });
+		res.status(400).json({ message: `The following fields are missing: ${formatted}` });
 	} else {
 		next();
 	}
