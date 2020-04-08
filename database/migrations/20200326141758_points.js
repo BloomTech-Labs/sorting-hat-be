@@ -13,14 +13,14 @@ exports.up = function(knex) {
         .references('id')
         .inTable('answers')
         .onUpdate('CASCADE')
-        .onDelete('RESTRICT');
+        .onDelete('CASCADE');
 
         tbl.integer('track_id')
         .unsigned()
         .references('id')
         .inTable('tracks')
         .onUpdate('CASCADE')
-        .onDelete('RESTRICT');
+        .onDelete('CASCADE');
     })
 };
 

@@ -50,7 +50,7 @@ router.post('/questions/:questionId', (req, res) => {
         
         Tracks.find()
         .then(tracks => {
-            res.status(200).json('OK');
+            res.status(201).json('OK');
             tracks.map(track => {
                 const point = {
                     points: 0.00
