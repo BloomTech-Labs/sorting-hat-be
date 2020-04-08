@@ -97,25 +97,32 @@ function validateId(req, res, next) {
 }
 
 function validateInput(req, res, next) {
+	let jsonMess = [];
+	function checkArr() {
+		while (jsonMess.length < 3) {
+			return false;
+		}
+		return true;
+	}
 	if (Object.keys(req.body).length == 0) {
 		res.status(400).json({ message: 'missing required fields' });
-		// } else if (req.body) {
-		// 	Object.keys(req.body).map((item) => {
-		// 		console.log(item[0]);
-		// 		// if (!item["name"]) {
-		// 		//     console.log("Name is missing")
-		// 		// }
-		// 	});
-	} else if (req.body) {
-		let jsonMess = [];
-		Object.entries(req.body).map((trackInfo) => {
-			console.log('trackInfo', trackInfo);
-			if (!trackInfo[1]) {
-				jsonMess.push(` ${trackInfo[0]}`);
-			}
-		});
-		res.status(400).json({ message: `The following are missing fields: ${jsonMess}` });
-	} else next();
+	} else if (req.body.name === '' || req.body.description === '' || req.body.shortDesc === '') {
+		if (req.body.name === '') {
+			jsonMess.push('Name');
+			checkArr();
+		}
+		if (req.body.description === '') {
+			jsonMess.push(' Description');
+			checkArr();
+		}
+		if (req.body.shortDesc === '') {
+			jsonMess.push(' Short Description');
+			checkArr();
+		}
+		if (checkArr() === false) {
+			res.status(400).json({ message: `The following are missing fields: ${jsonMess}` });
+		} else next();
+	}
 }
 
 module.exports = router;

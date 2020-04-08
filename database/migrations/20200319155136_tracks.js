@@ -4,7 +4,7 @@ exports.up = function(knex) {
         tbl.increments();
 
         tbl.string('name', 500)
-        .notNullable();
+            .notNullable();
 
         tbl.string('description', 1000)
             .notNullable();

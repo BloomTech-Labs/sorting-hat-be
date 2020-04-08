@@ -34,66 +34,8 @@ describe('tracks router', () => {
 				})
 				.expect(201);
 		});
-		it('missing required track name field', function() {
-			return request(server)
-				.post('/api/tracks')
-				.send({
-					name: '',
-					description: 'This is fullstack track description',
-					shortDesc: 'This is a short description',
-					strengths: 'You have many strengths',
-					link: 'placeholder.com'
-				})
-				.expect(400)
-				.then((res) => {
-					expect(res.body).toEqual({ message: 'missing required track name field' });
-				});
-		});
-		it('missing required description field', function() {
-			return request(server)
-				.post('/api/tracks')
-				.send({
-					name: 'android',
-					description: '',
-					strengths: 'You have many strengths',
-					link: 'placeholder.com'
-				})
-				.expect(400)
-				.then((res) => {
-					expect(res.body).toEqual({ message: 'missing required track name field' });
-				});
-		});
-		it('missing required short description field', function() {
-			return request(server)
-				.post('/api/tracks')
-				.send({
-					name: 'android',
-					description: 'This is fullstack track description',
-					shortDesc: '',
-					strengths: 'You have many strengths',
-					link: 'placeholder.com'
-				})
-				.expect(400)
-				.then((res) => {
-					expect(res.body).toEqual({ message: 'missing required track name field' });
-				});
-		});
-		it('missing required strengths field', function() {
-			return request(server)
-				.post('/api/tracks')
-				.send({
-					name: 'android',
-					description: 'This is fullstack track description',
-					shortDesc: 'This is a short description',
-					strengths: '',
-					link: 'placeholder.com'
-				})
-				.expect(400)
-				.then((res) => {
-					expect(res.body).toEqual({ message: 'missing required track name field' });
-				});
-		});
-		it('Should fail to create a new track.', function() {
+
+		it('Should return all the empty fields', function() {
 			return request(server)
 				.post('/api/tracks')
 				.send({
@@ -101,11 +43,13 @@ describe('tracks router', () => {
 					description: '',
 					shortDesc: '',
 					strengths: '',
-					link: ''
+					link: 'fakelink.com'
 				})
 				.expect(400)
 				.then((res) => {
-					expect(res.body).toEqual({ message: 'missing required track field' });
+					expect(res.body).toEqual({
+						message: 'The following are missing fields:  name, description, shortDesc, strengths'
+					});
 				});
 		});
 	});
@@ -127,7 +71,7 @@ describe('tracks router', () => {
 
 	describe('DELETE /api/tracks/:id', function() {
 		it('Delete an existing track..', function() {
-			return request(server).delete('/api/tracks/7').expect(200);
+			return request(server).delete('/api/tracks/6').expect(200);
 		});
 	});
 });
