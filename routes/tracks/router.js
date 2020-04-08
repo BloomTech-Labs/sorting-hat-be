@@ -104,19 +104,25 @@ function validateInput(req, res, next) {
 		}
 		return true;
 	}
+	console.log(req.body.name);
 	if (Object.keys(req.body).length == 0) {
 		res.status(400).json({ message: 'missing required fields' });
-	} else if (req.body.name === '' || req.body.description === '' || req.body.shortDesc === '') {
-		if (req.body.name === '') {
-			jsonMess.push('Name');
+	} else if (
+		req.body.name === '' ||
+		req.body.name === undefined ||
+		(req.body.description === '' || req.body.description === undefined) ||
+		(req.body.shortDesc === '' || req.body.shotDesc === undefined)
+	) {
+		if (req.body.name === '' || req.body.name === undefined) {
+			jsonMess.push(' Name ');
 			checkArr();
 		}
-		if (req.body.description === '') {
-			jsonMess.push(' Description');
+		if (req.body.description === '' || req.body.description === undefined) {
+			jsonMess.push(' Description ');
 			checkArr();
 		}
-		if (req.body.shortDesc === '') {
-			jsonMess.push(' Short Description');
+		if (req.body.shortDesc === '' || req.body.shortDesc === undefined) {
+			jsonMess.push(' Short Description ');
 			checkArr();
 		}
 		if (checkArr() === false) {
