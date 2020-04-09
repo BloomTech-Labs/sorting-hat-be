@@ -13,7 +13,6 @@ router.get('/', (req, res) => {
 
 router.get('/:answerId', (req, res) => {
 	const { answerId } = req.params;
-	console.log('PARAMS', req.params);
 
 	Points.findById(answerId)
 		.then((points) => {
@@ -24,31 +23,28 @@ router.get('/:answerId', (req, res) => {
 		});
 });
 
-router.post('/:answerId/:trackId', (req, res) => {
-	const { trackId, answerId } = req.params;
-	const point = req.body;
-	point.track_id = trackId;
-	point.answer_id = answerId;
+router.get('/:answerId/:trackId', (req, res) => {
+    const { answerId, trackId } = req.params;
 
-	Points.createPoint(point)
-		.then((inserted) => {
-			res.status(201).json(inserted);
+	Points.findSpecificPoint(answerId, trackId)
+		.then((point) => {
+			res.status(200).json(point);
 		})
-		.catch((name, message, stack, code) => {
-			res.status(500).json({ name, message, stack, code });
+		.catch(() => {
+			res.status(500).json({ error: 'error' });
 		});
 });
 
-// router.delete('/:id', (req, res) => {
-// 	const id = req.params.id;
+router.delete('/:id', (req, res) => {
+	const id = req.params.id;
 
-// 	Points.delPoint(id)
-// 		.then((count) => {
-// 			res.status(200).json(count);
-// 		})
-// 		.catch(() => {
-// 			res.status(500).json({ error: 'Unable to delete point' });
-// 		});
-// });
+	Points.delPoint(id)
+		.then((count) => {
+			res.status(200).json(count);
+		})
+		.catch(() => {
+			res.status(500).json({ error: 'Unable to delete point' });
+		});
+});
 
 module.exports = router;

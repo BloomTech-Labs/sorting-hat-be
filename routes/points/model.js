@@ -5,6 +5,7 @@ module.exports = {
     findById,
     createPoint,
     createPointAnswer,
+    findSpecificPoint,
     delPoint
 }
 
@@ -16,6 +17,13 @@ function findById(answerId) {
     return db('points')
     .select('points', 'answer_id', 'track_id')
     .where({ answer_id: answerId })
+}
+
+function findSpecificPoint(answerId, trackId) {
+    return db('points')
+    .select('points', 'answer_id', 'track_id')
+    .first()
+    .where({ answer_id: answerId, track_id: trackId })
 }
 
 function createPoint(point) {
