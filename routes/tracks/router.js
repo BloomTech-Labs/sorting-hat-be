@@ -54,35 +54,16 @@ router.post('/', validateInput, (req, res) => {
 		});
 });
 
-router.delete('/:id', validateId, (req, res) => {
-    const { id } = req.params;
+router.delete('/:id', validateId, async (req, res) => {
+	const { id } = req.params;
 
-    Points.find()
-    .then((points) => {    
-        points.map((point) => {
-            if(point.track_id == id) {
-                Points.delPoint(point.id)
-                .then(count => {
-                    console.log('point.id', point.id);
-                    
-                    res.json(count);
-                })
-                .catch(() => {
-            
-                    res.status(500).json({ error: 'Unable to delete point' });
-                })
-                
-            }
-        });
-        Tracks.removeTrack(id)
-            .then((deleted) => {
-                res.json(deleted);
-            })
-            .catch(() => {
-                res.status(500).json({ error: 'Unable to delete track' });
-            });
-    });
-
+	Tracks.removeTrack(id)
+		.then((deleted) => {
+			res.json(deleted);
+		})
+		.catch((err) => {
+			res.status(500).json({ error: err });
+		});
 });
 
 router.put('/:id', validateId, validateInput, (req, res) => {

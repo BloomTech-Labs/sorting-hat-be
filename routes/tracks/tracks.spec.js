@@ -58,10 +58,44 @@ describe('tracks router', () => {
 				.post('/api/tracks')
 				.send({
 					name: '',
+					description: 'This is fullstack track description',
+					shortDesc: 'This is a short description',
+					strengths: 'You have many strengths',
+					link: 'placeholder.com'
+				})
+				.expect(400)
+				.then((res) => {
+					expect(res.body).toEqual({
+						"message": "The following fields are missing: Name"
+					});
+				});
+		});
+
+		it('Should return all the empty fields', function() {
+			return request(server)
+				.post('/api/tracks')
+				.send({
+					name: '',
 					description: '',
-					shortDesc: '',
-					strengths: '',
-					link: 'fakelink.com'
+					shortDesc: 'This is a short description',
+					strengths: 'You have many strengths',
+					link: 'placeholder.com'
+				})
+				.expect(400)
+				.then((res) => {
+					expect(res.body).toEqual({
+						"message": "The following fields are missing: Name, Description"
+					});
+				});
+		});
+
+		it('Should return all the empty fields', function() {
+			return request(server)
+				.post('/api/tracks')
+				.send({
+					name: '',
+					description: '',
+					shortDesc: ''
 				})
 				.expect(400)
 				.then((res) => {
@@ -75,46 +109,6 @@ describe('tracks router', () => {
 			return request(server)
 				.post('/api/tracks')
 				.send({
-					name: '',
-					description: '',
-					shortDesc: '',
-					strengths: '',
-					link: 'fakelink.com'
-				})
-				.expect(400)
-				.then((res) => {
-					expect(res.body).toEqual({
-						"message": "The following fields are missing: Name, Description, Short Description"
-					});
-				});
-		});
-
-		it('Should return all the empty fields', function() {
-			return request(server)
-				.post('/api/tracks')
-				.send({
-					name: '',
-					description: '',
-					shortDesc: '',
-					strengths: '',
-					link: 'fakelink.com'
-				})
-				.expect(400)
-				.then((res) => {
-					expect(res.body).toEqual({
-						"message": "The following fields are missing: Name, Description, Short Description"
-					});
-				});
-		});
-
-		it('Should return all the empty fields', function() {
-			return request(server)
-				.post('/api/tracks')
-				.send({
-					name: '',
-					description: '',
-					shortDesc: '',
-					strengths: '',
 					link: 'fakelink.com'
 				})
 				.expect(400)
