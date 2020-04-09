@@ -2,12 +2,6 @@ require('dotenv').config({ path: '../../config/.env' });
 const request = require('supertest');
 const server = require('../api/server.js');
 const db = require('../../database/connection.js');
-
-beforeAll(async function() {
-	await db.raw('ALTER TABLE answers DROP CONSTRAINT answers_question_id_foreign');
-	await db.raw('ALTER TABLE points DROP CONSTRAINT points_answer_id_foreign');
-});
-
 describe('questions router', function() {
 	describe('test environment', function() {
 		it('should use the staging environment', function() {
@@ -88,5 +82,11 @@ describe('questions router', function() {
 
 afterAll(async () => {
 	await new Promise((resolve) => setTimeout(() => resolve(), 500)); // avoid jest open handle error
-	
+	await db.seed.run();
+	await db.raw(
+		'ALTER TABLE points ADD CONSTRAINT points_answer_id_foreign FOREIGN KEY(answer_id) REFERENCES answers(id)'
+	);
+	await db.raw(
+		'ALTER TABLE answers ADD CONSTRAINT answers_question_id_foreign FOREIGN KEY(question_id) REFERENCES questions(id)'
+	);
 });
