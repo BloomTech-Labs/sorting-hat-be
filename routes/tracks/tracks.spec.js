@@ -165,6 +165,11 @@ describe('tracks router', () => {
 		it('Delete an existing track.', function() {
 			return request(server).delete('/api/tracks/5').expect(200);
 		});
+		it('Should say unable to delete track', function() {
+			return request(server).delete('/api/tracks/50').query({ id: 50 }).expect(400).then((res) => {
+				expect(res.body).toEqual({ message: 'invalid track id' });
+			});
+		});
 	});
 });
 
