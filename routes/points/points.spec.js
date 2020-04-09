@@ -25,5 +25,11 @@ describe('points router', () => {
 		it('Returns all the points associated with the specified track and answer choice.', function() {
 			return request(server).get('/api/points/1/2').expect(200);
 		});
+    });
+    
+    describe('PUT /api/points/:answerId/:trackId', function() {
+		it('Updates the point associated with the specified track and answer choice.', function() {
+			return request(server).put('/api/points/1/2').send({ points: 4 }).expect(200);
+		});
 	});
 });
