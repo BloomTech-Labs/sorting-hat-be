@@ -107,25 +107,26 @@ function validateInput(req, res, next) {
 	}
 	if (Object.keys(req.body).length == 0) {
 		res.status(400).json({ message: 'missing required fields' });
-	}
-	if (req.body.name === '' || req.body.name === undefined) {
-		jsonMess.push('Name');
-		checkArr();
-	}
-	if (req.body.description === '' || req.body.description === undefined) {
-		jsonMess.push('Description');
-		checkArr();
-	}
-	if (req.body.shortDesc === '' || req.body.shortDesc === undefined) {
-		jsonMess.push('Short Description');
-		checkArr();
-	}
-	if (checkArr() === false) {
-		missing = jsonMess.toString();
-		formatted = missing.replace(/,/g, ', ');
-		res.status(400).json({ message: `The following fields are missing: ${formatted}` });
-	} else {
-		next();
+	} else if (Object.keys(req.body).length > 0) {
+		if (req.body.name === '' || req.body.name === undefined) {
+			jsonMess.push('Name');
+			checkArr();
+		}
+		if (req.body.description === '' || req.body.description === undefined) {
+			jsonMess.push('Description');
+			checkArr();
+		}
+		if (req.body.shortDesc === '' || req.body.shortDesc === undefined) {
+			jsonMess.push('Short Description');
+			checkArr();
+		}
+		if (checkArr() === false) {
+			missing = jsonMess.toString();
+			formatted = missing.replace(/,/g, ', ');
+			res.status(400).json({ message: `The following fields are missing: ${formatted}` });
+		} else {
+			next();
+		}
 	}
 }
 
