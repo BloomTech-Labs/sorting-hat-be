@@ -102,9 +102,7 @@ function validateInput(req, res, next) {
 		if (req.body.name && req.body.description && req.body.shortDesc) {
 			return true;
 		} else {
-			do {
-				return false;
-			} while (jsonMess.length < 3);
+			return false;
 		}
 	}
 	if (Object.keys(req.body).length == 0) {

@@ -48,7 +48,7 @@ describe('tracks router', () => {
 				.expect(400)
 				.then((res) => {
 					expect(res.body).toEqual({
-						"message": "The following fields are missing: Name, Description, Short Description"
+						message: 'The following fields are missing: Name, Description, Short Description'
 					});
 				});
 		});
@@ -66,7 +66,7 @@ describe('tracks router', () => {
 				.expect(400)
 				.then((res) => {
 					expect(res.body).toEqual({
-						"message": "The following fields are missing: Name"
+						message: 'The following fields are missing: Name'
 					});
 				});
 		});
@@ -84,7 +84,7 @@ describe('tracks router', () => {
 				.expect(400)
 				.then((res) => {
 					expect(res.body).toEqual({
-						"message": "The following fields are missing: Name, Description"
+						message: 'The following fields are missing: Name, Description'
 					});
 				});
 		});
@@ -100,7 +100,7 @@ describe('tracks router', () => {
 				.expect(400)
 				.then((res) => {
 					expect(res.body).toEqual({
-						"message": "The following fields are missing: Name, Description, Short Description"
+						message: 'The following fields are missing: Name, Description, Short Description'
 					});
 				});
 		});
@@ -114,7 +114,7 @@ describe('tracks router', () => {
 				.expect(400)
 				.then((res) => {
 					expect(res.body).toEqual({
-						"message": "The following fields are missing: Name, Description, Short Description"
+						message: 'The following fields are missing: Name, Description, Short Description'
 					});
 				});
 		});
@@ -132,7 +132,7 @@ describe('tracks router', () => {
 				.expect(400)
 				.then((res) => {
 					expect(res.body).toEqual({
-						"message": "The following fields are missing: Name, Description, Short Description"
+						message: 'The following fields are missing: Name, Description, Short Description'
 					});
 				});
 		});
