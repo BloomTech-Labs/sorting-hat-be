@@ -21,9 +21,9 @@ describe('points router', () => {
 		});
 	});
 
-	// describe('GET /api/points/:answerId/:trackId', function() {
-	// 	it('Returns all the points associated with the specified track and answer choice.', function() {
-	// 		return request(server).get('/api/points/1').expect(200);
-	// 	});
-	// });
+	describe('GET /api/points/:answerId/:trackId', function() {
+		it('Returns all the points associated with the specified track and answer choice.', function() {
+			return request(server).get('/api/points/1/2').expect(200);
+		});
+	});
 });

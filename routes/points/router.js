@@ -35,6 +35,19 @@ router.get('/:answerId/:trackId', (req, res) => {
 		});
 });
 
+router.put('/:answerId/:trackId', (req, res) => {
+    const { answerId, trackId } = req.params;
+    const changes = req.body;
+
+	Points.updateSpecificPoint(answerId, trackId, changes)
+		.then((point) => {
+			res.status(200).json(point);
+		})
+		.catch(err => {
+			res.status(500).json({ error: err });
+		});
+});
+
 router.delete('/:id', (req, res) => {
 	const id = req.params.id;
 
