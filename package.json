@@ -30,6 +30,15 @@
     "testEnvironment": "node",
     "setupFilesAfterEnv": [
       "./setup.js"
+    ],
+    "collectCoverageFrom": [
+      "**/*.{js,jsx}",
+      "!**/node_modules/**",
+      "!**/vendor/**",
+      "!**/database/**",
+      "!**/tests/**",
+      "!**/spec/**",
+      "!**/*.spec.{js,jsx}"
     ]
   },
   "dependencies": {
