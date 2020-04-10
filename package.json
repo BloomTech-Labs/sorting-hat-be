@@ -33,7 +33,6 @@
     ],
     "collectCoverageFrom": [
       "**/*.{js,jsx}",
-      "!**/setup.js/**",
       "!**/node_modules/**",
       "!**/vendor/**",
       "!**/database/**",

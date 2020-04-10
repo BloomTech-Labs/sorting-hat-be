@@ -9,7 +9,7 @@ checks:
     config:
       threshold: 4
   file-lines:
-    enabled: false
+    enabled: true
     config:
       threshold: 250
   method-complexity:
@@ -33,11 +33,11 @@ checks:
     config:
       threshold: 4
   similar-code:
-    enabled: false
+    enabled: true
     config:
       threshold: #language-specific defaults. overrides affect all languages.
   identical-code:
-    enabled: false
+    enabled: true
     config:
       threshold: #language-specific defaults. overrides affect all languages.
 plugins:
