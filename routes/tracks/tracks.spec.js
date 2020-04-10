@@ -149,13 +149,26 @@ describe('tracks router', () => {
 					strengths: 'You have many strengths',
 					link: 'placeholder.com'
 				})
-				.expect(200);
+				.expect(200)
+				.then((res) => {
+					expect(res.body).toBe(1);
+				});
+		});
+		it('Should return missing required fields.', function() {
+			return request(server).put('/api/tracks/6').send({}).expect(400).then((res) => {
+				expect(res.body).toEqual({ message: 'missing required fields' });
+			});
 		});
 	});
 
 	describe('DELETE /api/tracks/:id', function() {
 		it('Delete an existing track.', function() {
 			return request(server).delete('/api/tracks/5').expect(200);
+		});
+		it('Should say unable to delete track', function() {
+			return request(server).delete('/api/tracks/50').query({ id: 50 }).expect(400).then((res) => {
+				expect(res.body).toEqual({ message: 'invalid track id' });
+			});
 		});
 	});
 });

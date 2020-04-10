@@ -1,7 +1,6 @@
 require('dotenv').config({ path: '../../config/.env' });
 const request = require('supertest');
 const server = require('../api/server.js');
-const db = require('../../database/connection.js');
 
 describe('points router', () => {
 	describe('test environment', function() {
@@ -48,12 +47,5 @@ describe('points router', () => {
 });
 
 afterAll(async () => {
-	await new Promise((resolve) => setTimeout(() => resolve(), 1000)); // avoid jest open handle error
-	await db.seed.run();
-	await db.raw(
-		'ALTER TABLE points ADD CONSTRAINT points_answer_id_foreign FOREIGN KEY(answer_id) REFERENCES answers(id)'
-	);
-	await db.raw(
-		'ALTER TABLE answers ADD CONSTRAINT answers_question_id_foreign FOREIGN KEY(question_id) REFERENCES questions(id)'
-	);
+	await new Promise((resolve) => setTimeout(() => resolve(), 500)); // avoid jest open handle error
 });
