@@ -51,5 +51,7 @@ exclude_patterns:
 - "db/"
 - "**/node_modules/"
 - "script/"
+- "tests/"
+- "spec/"
+- "**/*.spec.js"
 - "**/vendor/"
-- "**/*.d.ts"
