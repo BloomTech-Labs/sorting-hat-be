@@ -8,9 +8,6 @@ router.get('/', (req, res) => {
 		.then((points) => {
 			res.status(200).json(points);
 		})
-		.catch(() => {
-			res.status(500).json({ error: 'error' });
-		});
 });
 
 router.get('/:answerId', validateAnswerId, (req, res) => {
@@ -20,9 +17,6 @@ router.get('/:answerId', validateAnswerId, (req, res) => {
 		.then((points) => {
 			res.status(200).json(points);
 		})
-		.catch(() => {
-			res.status(500).json({ error: 'error' });
-		});
 });
 
 router.get('/:answerId/:trackId', validateAnswerId, validateTrackId, (req, res) => {
@@ -32,9 +26,6 @@ router.get('/:answerId/:trackId', validateAnswerId, validateTrackId, (req, res) 
 		.then((point) => {
 			res.status(200).json(point);
 		})
-		.catch(() => {
-			res.status(500).json({ error: 'error' });
-		});
 });
 
 router.put('/:answerId/:trackId', validateInput, validateAnswerId, validateTrackId, (req, res) => {
@@ -45,9 +36,6 @@ router.put('/:answerId/:trackId', validateInput, validateAnswerId, validateTrack
 		.then((point) => {
 			res.status(200).json(point);
 		})
-		.catch(err => {
-			res.status(500).json({ error: err });
-		});
 });
 
 // custom middleware
@@ -62,10 +50,6 @@ function validateAnswerId(req, res, next) {
         res.status(400).json({ message: "invalid answerId" });
       } else next();
     })
-    .catch(err => {
-      console.log(err);
-      res.status(500).json({ error: `Couldn't retrieve a point with answerId of ${id}` });
-    });
 }
 
 function validateTrackId(req, res, next) {
@@ -78,10 +62,6 @@ function validateTrackId(req, res, next) {
         res.status(400).json({ message: "invalid trackId" });
       } else next();
     })
-    .catch(err => {
-      console.log(err);
-      res.status(500).json({ error: `Couldn't retrieve a point with trackId of ${id}` });
-    });
 }
 
 function validateInput(req, res, next) {

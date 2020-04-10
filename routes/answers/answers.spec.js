@@ -15,6 +15,15 @@ describe('answers router', () => {
 		});
 	});
 
+	describe('GET /api/answers/1', function() {
+		it('Returns a specific answer', function() {
+			return request(server).get('/api/answers/1').expect(200);
+		});
+		it('Returns an error', function() {
+			return request(server).get('/api/answers/1000').expect(400);
+		});
+	});
+
 	describe('GET /api/answers/questions/:questionId', function() {
 		it('Returns all answers associated with that question.', function() {
 			return request(server).get('/api/answers/questions/1').expect(200);
@@ -24,6 +33,15 @@ describe('answers router', () => {
 	describe('POST /api/answers/questions/:questionId', function() {
 		it('Create an answer for a specific question.', function() {
 			return request(server).post('/api/answers/questions/1').send({ choice: 'This is a choice' }).expect(201);
+		});
+		it('Returns am error', function() {
+			return request(server).post('/api/answers/questions/1000').send({ choice: 'This is a choice' }).expect(400);
+		});
+		it('Returns am error', function() {
+			return request(server).post('/api/answers/questions/1').send({}).expect(400);
+		});
+		it('Returns am error', function() {
+			return request(server).post('/api/answers/questions/1').send({ notchoice: 'This is a choice' }).expect(400);
 		});
 	});
 

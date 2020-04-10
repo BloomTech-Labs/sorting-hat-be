@@ -6,8 +6,7 @@ module.exports = {
     createPoint,
     createPointAnswer,
     findSpecificPoint,
-    updateSpecificPoint,
-    delPoint
+    updateSpecificPoint
 }
 
 function find() {
@@ -45,10 +44,4 @@ function createPoint(point) {
 function createPointAnswer(point) {
     return db('points')
     .insert(point, 'id', 'answer_id', 'track_id');
-}
-
-function delPoint(id) {
-    return db('points')
-        .where({ id })
-        .del();
 }

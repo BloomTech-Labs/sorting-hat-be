@@ -7,9 +7,6 @@ router.get('/', (req, res) => {
 		.then((questions) => {
 			res.json(questions);
 		})
-		.catch(() => {
-			res.status(500).json({ error: 'Unable to retrieve questions' });
-		});
 });
 
 router.get('/:id', validateId, (req, res) => {
@@ -19,9 +16,6 @@ router.get('/:id', validateId, (req, res) => {
 		.then((question) => {
 			res.json(question);
 		})
-		.catch(() => {
-			res.status(500).json({ error: 'Unable to retrieve that question' });
-		});
 });
 
 router.get('/:id/answers', validateId, (req, res) => {
@@ -31,9 +25,6 @@ router.get('/:id/answers', validateId, (req, res) => {
 		.then((question) => {
 			res.json(question);
 		})
-		.catch(() => {
-			res.status(500).json({ error: 'Unable to retrieve answers' });
-		});
 });
 
 router.post('/', validateInput, (req, res) => {
@@ -43,9 +34,6 @@ router.post('/', validateInput, (req, res) => {
 		.then((added) => {
 			res.status(201).json(added);
 		})
-		.catch(() => {
-			res.status(500).json({ error: 'Unable to create question' });
-		});
 });
 
 router.put('/:id', validateId, (req, res) => {
@@ -56,9 +44,6 @@ router.put('/:id', validateId, (req, res) => {
 		.then((edited) => {
 			res.json(edited);
 		})
-		.catch(() => {
-			res.status(500).json({ error: 'Unable to edit question' });
-		});
 });
 
 router.delete('/:id', validateId, (req, res) => {
@@ -68,9 +53,6 @@ router.delete('/:id', validateId, (req, res) => {
 		.then((count) => {
 			res.json(count);
 		})
-		.catch((error) => {
-			res.status(500).json({ error: error });
-		});
 });
 
 // custom middleware
@@ -84,10 +66,6 @@ function validateId(req, res, next) {
 				res.status(400).json({ message: 'invalid question id' });
 			} else next();
 		})
-		.catch((err) => {
-			console.log(err);
-			res.status(500).json({ error: `Couldn't retrieve a question with id of ${id}` });
-		});
 }
 
 function validateInput(req, res, next) {

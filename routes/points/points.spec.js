@@ -43,6 +43,15 @@ describe('points router', () => {
 		it('Returns an error.', function() {
 			return request(server).put('/api/points/100/200').send({ points: 3 }).expect(400);
 		});
+		it('Returns an error.', function() {
+			return request(server).put('/api/points/1/200').send({ points: 3 }).expect(400);
+		});
+		it('Returns an error.', function() {
+			return request(server).put('/api/points/1/200').send().expect(400);
+		});
+		it('Returns an error.', function() {
+			return request(server).put('/api/points/1/2').send({ notpoints: 3 }).expect(400);
+		});
 	});
 });
 

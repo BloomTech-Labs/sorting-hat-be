@@ -9,9 +9,6 @@ router.get('/', (req, res) => {
 		.then((answers) => {
 			res.json(answers);
 		})
-		.catch(() => {
-			res.status(500).json({ error: 'Unable to retrieve answers' });
-		});
 });
 
 router.get('/:id', validateAnswerId, (req, res) => {
@@ -21,9 +18,6 @@ router.get('/:id', validateAnswerId, (req, res) => {
 		.then((answer) => {
 			res.json(answer);
 		})
-		.catch(() => {
-			res.status(500).json({ error: 'Unable to retrieve answer' });
-		});
 });
 
 router.get('/questions/:questionId', validateQuestionId, (req, res) => {
@@ -33,9 +27,6 @@ router.get('/questions/:questionId', validateQuestionId, (req, res) => {
 		.then((answer) => {
 			res.json(answer);
 		})
-		.catch(() => {
-			res.status(500).json({ error: 'Unable to retrieve question' });
-		});
 });
 
 router.post('/questions/:questionId', validateInput, validateQuestionId, (req, res) => {
@@ -58,9 +49,6 @@ router.post('/questions/:questionId', validateInput, validateQuestionId, (req, r
 				});
 			});
 		})
-		.catch(() => {
-			res.status(500).json({ error: 'Unable to create the answer choice' });
-		});
 });
 
 router.put('/:id', validateInput, validateAnswerId, (req, res) => {
@@ -71,9 +59,6 @@ router.put('/:id', validateInput, validateAnswerId, (req, res) => {
 		.then((edited) => {
 			res.json(edited);
 		})
-		.catch(() => {
-			res.status(500).json({ error: 'Unable to edit answer' });
-		});
 });
 
 router.delete('/:id', validateAnswerId, (req, res) => {
@@ -83,9 +68,6 @@ router.delete('/:id', validateAnswerId, (req, res) => {
 		.then((count) => {
 			res.json(count);
 		})
-		.catch(() => {
-			res.status(500).json({ error: 'Unable to delete answer' });
-		});
 });
 
 // custom middleware
@@ -99,10 +81,6 @@ function validateAnswerId(req, res, next) {
 				res.status(400).json({ message: 'invalid answerId' });
 			} else next();
 		})
-		.catch((err) => {
-			console.log(err);
-			res.status(500).json({ error: `Couldn't retrieve a point with answerId of ${answerId}` });
-		});
 }
 
 function validateQuestionId(req, res, next) {
@@ -114,10 +92,6 @@ function validateQuestionId(req, res, next) {
 				res.status(400).json({ message: 'invalid questionId' });
 			} else next();
 		})
-		.catch((err) => {
-			console.log(err);
-			res.status(500).json({ error: `Couldn't retrieve a point with questionId of ${questionId}` });
-		});
 }
 
 function validateInput(req, res, next) {

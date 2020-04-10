@@ -34,6 +34,12 @@ describe('tracks router', () => {
 				})
 				.expect(201);
 		});
+		it('Returns an error.', function() {
+			return request(server)
+				.post('/api/tracks')
+				.send({ test: "test" })
+				.expect(400);
+		});
 
 		it('Should return all the empty fields', function() {
 			return request(server)

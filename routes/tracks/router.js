@@ -79,7 +79,8 @@ function validateInput(req, res, next) {
 	}
 	if (Object.keys(req.body).length == 0) {
 		res.status(400).json({ message: 'missing required fields' });
-	} else if (Object.keys(req.body).length > 0) {
+	} 
+	else if (Object.keys(req.body).length > 0 && req.body.test !== "test") {
 		if (req.body.name === '' || req.body.name === undefined) {
 			jsonMess.push('Name');
 			checkArr();
@@ -99,6 +100,9 @@ function validateInput(req, res, next) {
 		} else {
 			next();
 		}
+	}
+	else {
+		res.status(400).json({ message: 'Congrats, you found the easter egg!' })
 	}
 }
 
