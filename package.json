@@ -32,7 +32,13 @@
       "./setup.js"
     ],
     "collectCoverageFrom": [
-      "!**/node_modules/**"
+      "**/*.{js,jsx}",
+      "!**/node_modules/**",
+      "!**/vendor/**",
+      "!**/database/**",
+      "!**/tests/**",
+      "!**/spec/**",
+      "!**/*.spec.{js,jsx}"
     ]
   },
   "dependencies": {
