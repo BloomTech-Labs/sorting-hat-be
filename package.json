@@ -4,7 +4,7 @@
   "description": "RESTful NodeJS Backend for Tech Sorting Hat",
   "main": "index.js",
   "scripts": {
-    "test": "cross-env NODE_ENV=staging jest --watch",
+    "test": "cross-env NODE_ENV=staging jest --watch --runInBand",
     "server": "nodemon index.js",
     "start": "node index.js",
     "coverage": "cross-env NODE_ENV=staging jest --coverage --detectOpenHandles --forceExit || true"
@@ -32,13 +32,7 @@
       "./setup.js"
     ],
     "collectCoverageFrom": [
-      "**/*.{js,jsx}",
-      "!**/node_modules/**",
-      "!**/vendor/**",
-      "!**/database/**",
-      "!**/tests/**",
-      "!**/spec/**",
-      "!**/*.spec.{js,jsx}"
+      "!**/node_modules/**"
     ]
   },
   "dependencies": {
