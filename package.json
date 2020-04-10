@@ -30,6 +30,9 @@
     "testEnvironment": "node",
     "setupFilesAfterEnv": [
       "./setup.js"
+    ],
+    "collectCoverageFrom": [
+      "**/routes/**"
     ]
   },
   "dependencies": {

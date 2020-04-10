@@ -27,6 +27,18 @@ describe('questions router', function() {
 		});
 	});
 
+	describe('GET /api/questions/:id/answers', function() {
+		it('Retrieve the answers of an existing question.', function() {
+			return request(server).get('/api/questions/1/answers').expect(200);
+		});
+
+		it('Check if the question exists.', function() {
+			return request(server).get('/api/questions/1000/answers').expect(400).then((res) => {
+				expect(res.body).toEqual({ message: 'invalid question id' });
+			});
+		});
+	});
+
 	describe('POST /api/questions', function() {
 		it('Create a question.', function() {
 			return request(server).post('/api/questions').send({ question: `${Date.now()}` }).expect(201);
@@ -58,12 +70,6 @@ describe('questions router', function() {
 				.then((res) => {
 					expect(res.body).toEqual({ message: 'invalid question id' });
 				});
-		});
-
-		it('Should return a 500, unable to edit question', function() {
-			return request(server).put('/api/questions/1').send({}).expect(500).then((res) => {
-				expect(res.body).toEqual({ error: 'Unable to edit question' });
-			});
 		});
 	});
 

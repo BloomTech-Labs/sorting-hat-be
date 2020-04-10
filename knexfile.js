@@ -20,7 +20,7 @@ module.exports = {
   
   staging: {
     client: 'pg',
-    connection: 'postgresql://localhost/staging-sorting-hat' || process.env.DATABASE_URL,
+    connection: process.env.DATABASE_URL || 'postgresql://localhost/staging-sorting-hat',
     pool: {
       min: 2,
       max: 10
