@@ -8,7 +8,7 @@ exports.seed = function(knex) {
 				shortDesc: 'Design great experiences for users',
 				strengths:
 					'You enjoy talking with people. You are courteous, and socially aware which creates empathy towards people you interact with. You have a keen sense of aethetics. Beauty intruigues you more than how something actually works. You are organized, and ambiguity frustrates you. You want things to work properly, and in understanding this, you go out of your way to make sure others have a good experience. You would rather let people experience over telling them about the experience, because it isn’t the same.',
-				link: 'https://www.youtube.com/watch?v=Ovj4hFxko7c&t=34s'
+				link: 'https://www.youtube.com/embed/Ovj4hFxko7c'
 			},
 			{
 				name: 'Full Stack',
@@ -17,7 +17,7 @@ exports.seed = function(knex) {
 				shortDesc: 'Create anything on the internet',
 				strengths:
 					"You are a bit of an introvert and enjoy close friends. You prefer to work on your own or with likeminded people. You learn by example, applying it to your unique scenario. You are intrigued with how all systems work together to produce something functional. You are resilient in your work, and systematic. Problems are a challenge to be solved. If you try something and it doesn't work, you view that as one less mistake you have to make in order to achieve success. You are logical and matter of fact in your explanation of complex topics.",
-				link: 'https://www.youtube.com/watch?v=GEfuOMzRgXo'
+				link: 'https://www.youtube.com/embed/GEfuOMzRgXo'
 			},
 			{
 				name: 'DS',
@@ -26,7 +26,7 @@ exports.seed = function(knex) {
 				shortDesc: 'Extract and interpret data',
 				strengths:
 					'You enjoy working through problems on your own. You are capable of understanding complex problems often thinking critically about the validity of information given to you. You think holisticlly, perhaps even philosophically, but always question everything. In order to find answers to problem unsolved, you use a scientific apporoach. Testing your hypothosis to find answers. You value customization and functionality over something visually appealing. You can also explain complex topics in a simple way that still carries the core meaning.',
-				link: 'https://www.youtube.com/watch?v=-AkBfBWr_Gw'
+				link: 'https://www.youtube.com/embed/-AkBfBWr_Gw'
 			},
 			{
 				name: 'IOS',
@@ -35,7 +35,7 @@ exports.seed = function(knex) {
 				shortDesc: 'Develop mobile apps for iOS',
 				strengths:
 					'You are flexible, and agile in your thinking. You can easily communicate between all department in a company. You are a hands on learner, and do not fully understand until you can try it for yourself. You want to feel the experience, and see the real impact first-hand. You discover a need and want to solve it with a tangible solution. Above all else, you see the future in mobile devices and have a love for quality following beautiful design characteristics.',
-				link: 'https://www.youtube.com/watch?v=W8vPe3--rlA'
+				link: 'https://www.youtube.com/embed/W8vPe3--rlA'
 			},
 			{
 				name: 'Android',
@@ -44,7 +44,7 @@ exports.seed = function(knex) {
 				shortDesc: 'Develop mobile apps for Android',
 				strengths:
 					'You are flexible, and agile in your thinking. You can easily communicate between all department in a company. You are a hands on learner, and do not fully understand until you can try it for yourself. You want to feel the experience, and see the real impact first-hand. You discover a need and want to solve it with a tangible solution. Above all else, you see the future in mobile devices and have a love for optimization and customization to cater to all people.',
-				link: 'https://www.youtube.com/watch?v=_TgrWBZ40cs'
+				link: 'https://www.youtube.com/embed/_TgrWBZ40cs'
 			}
 		];
 
