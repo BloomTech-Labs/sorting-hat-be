@@ -1,25 +1,24 @@
 exports.seed = function(knex) {
 	return knex('answers').del().then(function() {
 		const answers = [
-			{ choice: 'Interacting with people, primarily with people that use your product.', question_id: 1 },
-			{ choice: 'Interacting with people inside your company and apart of your department.', question_id: 1 },
-			{ choice: 'Interacting with people inside your company between all departments.', question_id: 1 },
-			{ choice: 'Interacting with few people, mostly by yourself.', question_id: 1 },
+			{ choice: 'Working with the user.', question_id: 1 },
+			{ choice: 'Working with people who are working on the same thing you are.', question_id: 1 },
+			{ choice: 'Working with people who all have their part to work on.', question_id: 1 },
+			{ choice: 'Working mostly by yourself so that you can have high level of concentration.', question_id: 1 },
 
-			{ choice: 'Visual learner.', question_id: 2 },
-			{ choice: 'Learn by examples.', question_id: 2 },
-			{ choice: 'Hands on learner.', question_id: 2 },
+			{ choice: 'I only really learn when I can see it for myself.', question_id: 2 },
+			{ choice: 'I need to follow an example, and apply the teachings to my situation.', question_id: 2 },
+			{ choice: 'I don’t truly learn until I do it myself.', question_id: 2 },
 			{
-				choice: 'I question the validity of teachings or I understand most things the first time.',
+				choice: 'I am an independent thinker. Sometimes I correct those who are teaching me.',
 				question_id: 2
 			},
 
-			{ choice: "Ferrari's smooth lines. The aesthetics.", question_id: 3 },
-			{ choice: "Ferrari's engine, transmission, everything mechanically working together.", question_id: 3 },
-			{ choice: 'Driving the car, the wheel at your hands and the peddle at your feet.', question_id: 3 },
+			{ choice: 'Design Ferrari’s smooth lines. The aesthetics.', question_id: 3 },
+			{ choice: 'Design the engine, gears, transmission, etc. ', question_id: 3 },
+			{ choice: 'Design the steering wheel for the right ergonomics and functions.', question_id: 3 },
 			{
-				choice:
-					"Ferrari's team of engineers, mechanics, designers all working together to produce a single product.",
+				choice: 'Design the testing of the Ferrari’s performance.',
 				question_id: 3
 			},
 
@@ -28,19 +27,18 @@ exports.seed = function(knex) {
 			{ choice: 'Find the need, solving one problem at a time.', question_id: 4 },
 			{ choice: 'Scientific approach. Hypothesis and test.', question_id: 4 },
 
-			{ choice: 'I prefer pictures with steps and instructions.', question_id: 5 },
+			{ choice: 'Pictures would help me the most.', question_id: 5 },
 			{
-				choice:
-					'I have a general idea of what a chair looks like. I can afford to make a mistake once or twice to achieve my goal.',
+				choice: 'Step by step instruction helps the most',
+				question_id: 5
+			},
+			{
+				choice: 'Turns out Amazon shipped a barstool instead. I can work with that.',
 				question_id: 5
 			},
 			{
 				choice:
-					"This isn't a chair, this is a barstool. Not what I thought, but hey, a barstool may fit better.",
-				question_id: 5
-			},
-			{
-				choice: 'I prefer to make the chair myself. The cushion, angles and dimensions need to be just right.',
+					'I prefer to make a custom chair. The angles, materials, and dimensions need to be just right for my living room.',
 				question_id: 5
 			},
 
@@ -50,18 +48,20 @@ exports.seed = function(knex) {
 			{ choice: 'Music is like a dance for the ears. Perfectly choreographed in your ears.', question_id: 6 },
 
 			{
-				choice:
-					'I use both laptop and phone, but more importantly, I want to be able to pick up where I left off when switching.',
+				choice: 'I see myself working on cross functionality. Moving from one device to the next flawlessly.',
 				question_id: 7
 			},
-			{ choice: 'I mainly stay on my laptop.', question_id: 7 },
-			{ choice: 'I use my phone for everything.', question_id: 7 },
-			{ choice: 'Whichever is more functional.', question_id: 7 },
+			{
+				choice: 'I see myself building for the desktop as it is the capstone of all operations.',
+				question_id: 7
+			},
+			{ choice: 'I see myself building for the smartphone because mobility is the future.', question_id: 7 },
+			{ choice: 'I see myself as completely custom. All of my devices are specailized to me.', question_id: 7 },
 
-			{ choice: 'I prefer functionality over design.', question_id: 8 },
-			{ choice: 'Quality over quantity.', question_id: 8 },
-			{ choice: 'Reach all people over the right people.', question_id: 8 },
-			{ choice: 'Drive on the road, rather than an open field.', question_id: 8 }
+			{ choice: 'I prefer functionality over good looks.', question_id: 8 },
+			{ choice: 'I prefer quality design over high production low design.', question_id: 8 },
+			{ choice: 'I prefer custom solutions over basic functionality.', question_id: 8 },
+			{ choice: 'I prefer to drive on a nicely paved road over an open field.', question_id: 8 }
 		];
 
 		return knex('answers').insert(answers);
