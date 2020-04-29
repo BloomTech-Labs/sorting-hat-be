@@ -7,10 +7,10 @@ exports.seed = function(knex) {
 			{ choice: 'Working mostly by yourself so that you can have high level of concentration.', question_id: 1 },
 
 			{ choice: 'I only really learn when I can see it for myself.', question_id: 2 },
-			{ choice: 'I need to follow an example, and apply the teachings to my situation.', question_id: 2 },
+			{ choice: 'I need to follow an example and apply the teachings to my situation.', question_id: 2 },
 			{ choice: 'I don’t truly learn until I do it myself.', question_id: 2 },
 			{
-				choice: 'I am an independent thinker. Sometimes I correct those who are teaching me.',
+				choice: 'I am an independent thinker; sometimes I correct those who are teaching me.',
 				question_id: 2
 			},
 
@@ -29,11 +29,11 @@ exports.seed = function(knex) {
 
 			{ choice: 'Pictures would help me the most.', question_id: 5 },
 			{
-				choice: 'Step by step instruction helps the most',
+				choice: 'Step by step instruction helps the most.',
 				question_id: 5
 			},
 			{
-				choice: 'Turns out Amazon shipped a barstool instead. I can work with that.',
+				choice: 'Turns out Amazon shipped a bar stool instead. I can work with that.',
 				question_id: 5
 			},
 			{
@@ -56,9 +56,9 @@ exports.seed = function(knex) {
 				question_id: 7
 			},
 			{ choice: 'I see myself building for the smartphone because mobility is the future.', question_id: 7 },
-			{ choice: 'I see myself as completely custom. All of my devices are specailized to me.', question_id: 7 },
+			{ choice: 'I see myself as completely custom. All of my devices are specialized to me.', question_id: 7 },
 
-			{ choice: 'I prefer functionality over good looks.', question_id: 8 },
+			{ choice: 'I prefer functionality to good looks.', question_id: 8 },
 			{ choice: 'I prefer quality design over high production low design.', question_id: 8 },
 			{ choice: 'I prefer custom solutions over basic functionality.', question_id: 8 },
 			{ choice: 'I prefer to drive on a nicely paved road over an open field.', question_id: 8 }
