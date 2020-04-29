@@ -330,4 +330,9 @@ These contribution guidelines have been adapted from [this good-Contributing.md-
 
 >**Team Email** \
 Account: techsortinghat@gmail.com \
-Password: Lambdalabs22.
+Password: LambdaLabs22.
+
+>**Heroku Account** for Tech Sorting Hat BE \
+Name: Tech Sorting Hat \
+Email: techsortinghat@gmail.com \
+Password: LambdaLabs22.
