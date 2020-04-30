@@ -21,16 +21,16 @@
   },
   "homepage": "https://github.com/Lambda-School-Labs/sorting-hat-be#readme",
   "devDependencies": {
+    "@types/jest": "^25.2.1",
+    "@types/node": "^13.11.1",
     "cross-env": "^7.0.0",
     "jest": "^25.1.0",
     "nodemon": "^2.0.2",
-    "supertest": "^4.0.2"
+    "supertest": "^4.0.2",
+    "typescript": "^3.8.3"
   },
   "jest": {
     "testEnvironment": "node",
-    "setupFilesAfterEnv": [
-      "./setup.js"
-    ],
     "collectCoverageFrom": [
       "**/routes/**"
     ]
