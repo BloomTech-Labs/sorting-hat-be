@@ -5,12 +5,9 @@ module.exports = {
   development: {
     client: 'pg',
     connection: 'postgresql://localhost/dev-sorting-hat',
-    // connection: {
-    //   host: "localhost",
-    //   user: "postgres",
-    //   password: "",
-    //   database: "dev-sorting-hat",
-    // },
+    ssl: {
+      rejectUnauthorized: false
+    }, // this is for heroku
     pool: {
       min: 2,
       max: 10
